@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchBooksPage">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Use the search bar in order to find a book by title or meaningful words "
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <SearchView
+        android:layout_width="211dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/search_border"
+        android:queryHint="Search..."
+        android:id="@+id/searchbarID"/>
+
+    <Button
+        android:id="@+id/searchBTN"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Search"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@+id/searchbarID"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerID"
+            android:layout_marginTop="110dp"/>
+    </LinearLayout>
+</RelativeLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchBooksPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search_box"
+            android:hint="Type some words.."
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"/>
+        <Button
+            android:id="@+id/searchBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="search"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/message_display"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"
+            tools:text="Failed to get Data. Please check your internet connection!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/book_item_raw_api" />
+
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            android:visibility="invisible"
+            android:layout_width="50dp"
+
+            android:layout_centerInParent="true"
+            android:layout_height="50dp" />
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+
+
+

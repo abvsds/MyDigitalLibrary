@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bookmanager">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BookManager">
+        <activity android:name=".BookDetailsApi"></activity>
+        <activity android:name=".ViewReadBooks" />
+        <activity
+            android:name=".ViewWishBooks"
+            android:label="WishList" />
+        <activity
+            android:name=".AddWishBooksPage"
+            android:label="Adding a wish book" />
+        <activity
+            android:name=".AddReadBooksPage"
+            android:label="Adding a new read book" />
+        <activity android:name=".SearchBooksPage" />
+        <activity android:name=".AboutPage" />
+        <activity
+            android:name=".HomePage"
+            android:label="Home"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+        <activity
+            android:name=".RegisterPage"
+            android:label="Register Form" />
+        <activity android:name=".LoginPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

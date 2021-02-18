@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<item android:id="@+id/readbooksBtn"
+    android:title="Your read books">
+
+</item>
+    <item android:id="@+id/wishlistBtn"
+        android:title="Your Wishlist">
+
+    </item>
+    <item android:id="@+id/suggestionsBtn"
+        android:title="Need a suggestion?">
+
+    </item>
+    <item android:id="@+id/aboutBtn"
+        android:title="About us">
+
+    </item>
+    <item android:id="@+id/logoutBtn"
+        android:title="Logout">
+
+    </item>
+</menu>
