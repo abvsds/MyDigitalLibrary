@@ -2,26 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/noBooksID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="50dp"
+        android:text="No of books"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="30dp"
+        android:text="If you want to add another books in the two kind of list, please use the buttons below."
+        android:textSize="18sp"/>
     <Button
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:text="add a new read book"
-        android:layout_marginTop="300dp"
+        android:textSize="10dp"
+        android:layout_marginTop="510dp"
         android:layout_marginLeft="40dp"
         android:id="@+id/readId"/>
+
     <TextView
-    android:layout_width="match_parent"
-    android:layout_height="20dp"
-    android:text="or"
-    android:layout_below="@+id/readId"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_width="15dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="520dp"
+        android:layout_toRightOf="@+id/readId"
+        android:text="or" />
+
     <Button
-        android:layout_width="450dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:text="add a book wish you read"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="40dp"
-        android:layout_below="@+id/readId"
+        android:textSize="10dp"
+        android:layout_marginTop="510dp"
+        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/readId"
         android:id="@+id/wishId"/>
 </RelativeLayout>

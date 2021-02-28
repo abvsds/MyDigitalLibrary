@@ -6,11 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class SqliteDB extends SQLiteOpenHelper {
     public static final String DBNAME ="LoginUsers.db";
@@ -142,4 +139,26 @@ public String FormatData(Date date){
 //return true;
 
  }
+
+    public int countReadBooks(String username){
+        int count=0;
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        Cursor c=MyDatabase.rawQuery("select count (*) from ReadBook where username =?", new String[] {username});
+        if(c.getCount()>0) {
+            c.moveToLast();
+            count= c.getInt(0);
+        }
+        return count;
+    }
+    public int countWishBooks(String username){
+        int count=0;
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        Cursor c=MyDatabase.rawQuery("select count (*) from WishBook where username =?", new String[] {username});
+        if(c.getCount()>0) {
+         while(c.moveToNext()) {
+             count = c.getInt(0);
+         }
+        }
+        return count;
+    }
 }

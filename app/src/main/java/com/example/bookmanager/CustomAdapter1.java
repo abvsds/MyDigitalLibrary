@@ -53,7 +53,7 @@ holder.Rbook_title_txt.setText(String.valueOf(Rbook_title.get(position))+", "+St
     }
 
     @Override
-    public int getItemCount() {
+    public  int getItemCount() {
         return Rbook_title.size();
     }
 

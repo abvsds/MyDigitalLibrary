@@ -3,18 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:padding="8dp"
     android:id="@+id/bookLine">
 
     <ImageView
         android:layout_width="100dp"
-        android:layout_height="110dp"
-        android:id="@+id/thumbnailLink"
-        android:background="@drawable/loading_shape"
-        android:contentDescription="Cover Image"/>
+        android:layout_height="130dp"
+        android:id="@+id/thumbnailLink" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="130dp"
         android:orientation="vertical">
 
         <TextView
@@ -51,3 +53,63 @@
     </LinearLayout>
 
 </LinearLayout>
+<!--<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/bookLine"
+    android:layout_marginTop="12dp"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:id="@+id/thumbnailLink" />
+    android:background="@drawable/loading_shape"
+    android:contentDescription="Cover Image"
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/thumbnailLink"
+        android:text="Title"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+        android:layout_below="@+id/title"
+            android:text="Author"
+        android:layout_toEndOf="@+id/thumbnailLink"
+
+            />
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/author"
+            android:textSize="12sp"
+
+            android:layout_toEndOf="@+id/thumbnailLink"
+            android:text="category" />
+
+
+
+
+
+
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>-->

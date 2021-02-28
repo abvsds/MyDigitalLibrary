@@ -11,12 +11,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.BookManager">
         <activity android:name=".BookDetailsApi"></activity>
-        <activity android:name=".ViewReadBooks" />
+        <activity android:name=".ViewReadBooks" android:label="Read Books List"/>
         <activity
             android:name=".ViewWishBooks"
-            android:label="WishList" />
+            android:label="Wish Books List" />
         <activity
             android:name=".AddWishBooksPage"
             android:label="Adding a wish book" />
@@ -24,7 +25,7 @@
             android:name=".AddReadBooksPage"
             android:label="Adding a new read book" />
         <activity android:name=".SearchBooksPage" />
-        <activity android:name=".AboutPage" />
+        <activity android:name=".AboutPage" android:label="About app"/>
         <activity
             android:name=".HomePage"
             android:label="Home"

@@ -10,5 +10,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="More information" />
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"
+        android:text="   This app was created for the book lovers in otder to manage more easily their lectures. The users can add their readen book or can save details of a wish book that intent to read. Also, the users have the possibility to find a book and see more details regarding this. Using 'Statistics' button from the menu, the users can see a series of charts in order to reflect their activity. \n \n    The app was developed by Marina Serbanoiu and can be used on devices that have Android 8 or more. \n \n \n \n \n \n \n \n \n \n \n \n \n                                © 2021
+                       " />
 </RelativeLayout>

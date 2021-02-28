@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
 
 <item android:id="@+id/readbooksBtn"
@@ -12,11 +13,15 @@
 
     </item>
     <item android:id="@+id/suggestionsBtn"
-        android:title="Need a suggestion?">
+        android:title="Find info about a book">
+
+    </item>
+    <item android:id="@+id/statisticsBtn"
+        android:title="Statistics">
 
     </item>
     <item android:id="@+id/aboutBtn"
-        android:title="About us">
+        android:title="About app">
 
     </item>
     <item android:id="@+id/logoutBtn"

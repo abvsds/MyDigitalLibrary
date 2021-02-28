@@ -24,7 +24,8 @@ import com.google.android.material.navigation.NavigationView;
 public class HomePage extends AppCompatActivity {
 Button logout;
 TextView welcome_message;
-
+TextView info_books;
+SqliteDB db;
 DrawerLayout drawer;
 ActionBarDrawerToggle bardrawer;
 Toolbar toolbar;
@@ -42,9 +43,12 @@ Button add1, add2;
 
         welcome_message = (TextView) findViewById(R.id.welcomeId);
         String value_name = getIntent().getStringExtra("Username");
-        welcome_message.setText("Welcome "+ value_name+ "!");
+        welcome_message.setText("Welcome "+ value_name+ ",");
 
-
+        info_books=findViewById(R.id.noBooksID);
+        db = new SqliteDB(this);
+      info_books.setText("Now, you have "+ db.countReadBooks(value_name) +" books in Read Books List and " +
+              db.countWishBooks(value_name) + " books in Wish Books List. Press the button from top-left corner in order to see your lists or if you want to see the another functionalities of the app");
 
        toolbar = findViewById(R.id.toolbarId);
        setSupportActionBar(toolbar);

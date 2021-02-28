@@ -29,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ServiceConfigurationError;
 
 public class SearchBooksPage extends AppCompatActivity {
 private RecyclerView recycler_v;
@@ -39,8 +41,8 @@ private RecyclerViewAdapter_api adapter;
    // private SearchView searchBar;
     EditText search_text;
     Button searchbtn;
-    ProgressBar loading;
-    TextView error_message;
+  //  ProgressBar loading;
+   TextView error_message;
 
 
     @Override
@@ -50,19 +52,19 @@ private RecyclerViewAdapter_api adapter;
     //    searchBar=findViewById(R.id.searchbarID);
         search_text=findViewById(R.id.search_box);
         searchbtn=findViewById(R.id.searchBTN);
-        loading=findViewById(R.id.loading_indicator);
-        error_message= findViewById(R.id.message_display);
+      //  loading=findViewById(R.id.loading_indicator);
+       error_message= findViewById(R.id.message_display);
 
-       recycler_v=findViewById(R.id.recyclerID);
-       recycler_v.setHasFixedSize(true);
+      recycler_v=findViewById(R.id.recyclerID);
+      recycler_v.setHasFixedSize(true);
         recycler_v.setLayoutManager(new LinearLayoutManager(this));
         GoogleBooks=new ArrayList<>();
         requestqueue= Volley.newRequestQueue(this);
 
         searchbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View v) {
-                GoogleBooks.clear();
+               GoogleBooks.clear();
                 search();
             }
         });
@@ -70,10 +72,10 @@ private RecyclerViewAdapter_api adapter;
 
     }
     private void search(){
-     //   String search_word= searchBar.getTooltipText().toString();
-        String search_word = search_text.getText().toString();
+     // String search_word= searchBar.getTooltipText().toString();
+      String search_word = search_text.getText().toString();
 
-        boolean is_connected = Read_network_state(this);
+       boolean is_connected = Read_network_state(this);
         if(!is_connected)
         {
             error_message.setText("Failed to Load data. Please check your internet connection!");
@@ -87,7 +89,7 @@ private RecyclerViewAdapter_api adapter;
 
         if(search_word.equals(""))
         {
-            Toast.makeText(this,"Please enter your query",Toast.LENGTH_SHORT).show();
+           Toast.makeText(this,"Please enter your query",Toast.LENGTH_SHORT).show();
             return;
         }
         String final_query=search_word.replace(" ","+");
@@ -103,14 +105,16 @@ private RecyclerViewAdapter_api adapter;
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                     String title ="";
+                     //  loading.setVisibility(View.GONE);
+                        String title ="";
                       String author ="";
                       String publishedDate = "NoT Available";
                       String description = "No Description";
-                        int pageCount = 1000;
+                        int pageCount = 100;
                       String categories = "No category ";
                       String thumbnail ="http://books.google.com/books/content?id=SM7CDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api";
-
+                      String previewLink="";
+                      String infoLink =" ";
 
 
                         try {
@@ -119,22 +123,20 @@ private RecyclerViewAdapter_api adapter;
                             for (int i = 0 ; i< items.length() ;i++){
                                 JSONObject item = items.getJSONObject(i);
                                 JSONObject volumeInfo = item.getJSONObject("volumeInfo");
+try {
+    title = volumeInfo.getString("title");
+
+    JSONArray authors = volumeInfo.getJSONArray("authors");
+
+    if (authors.length() == 1) {
+        author = authors.getString(0);
+    } else {
+        author = authors.getString(0) + "/" + authors.getString(1);
+    }
 
 
-
-                                try{
-                                 title = volumeInfo.getString("title");
-
-                                    JSONArray authors = volumeInfo.getJSONArray("authors");
-                                    if(authors.length() == 1){
-                                        author = authors.getString(0);
-                                    }else {
-                                        author = authors.getString(0) + "/" +authors.getString(1);
-                                    }
-
-
-                                    publishedDate = volumeInfo.getString("publishedDate");
-                                    pageCount = volumeInfo.getInt("pageCount");
+    publishedDate = volumeInfo.getString("publishedDate");
+    pageCount = volumeInfo.getInt("pageCount");
 
 
 
@@ -142,17 +144,23 @@ private RecyclerViewAdapter_api adapter;
                                     description = volumeInfo.getString("description");
                                    // categories = volumeInfo.getString("categories");
                                   categories = volumeInfo.getJSONArray("categories").getString(0);
-
-                                }catch (Exception e){
-
-                                }
-                                 thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
-
-                                String previewLink = volumeInfo.getString("previewLink");
-                                String infoLink = volumeInfo.getString("infoLink");
+                            }catch (JSONException e){
+    Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
+                            }
 
 
-                                GoogleBooks.add(new BookFromAPI(title , author , description, pageCount, categories, previewLink, infoLink, publishedDate,thumbnail));
+             thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
+
+    //   thumbnail=volumeInfo.optString("thumbnail");
+    previewLink = volumeInfo.getString("previewLink");
+    infoLink = volumeInfo.getString("infoLink");
+
+
+
+
+
+
+                                GoogleBooks.add(new BookFromAPI(title , author ,  publishedDate,description, pageCount, categories, thumbnail,previewLink, infoLink));
 
 
                                 adapter = new RecyclerViewAdapter_api(SearchBooksPage.this , GoogleBooks);
@@ -163,6 +171,7 @@ private RecyclerViewAdapter_api adapter;
                         } catch (JSONException e) {
                             e.printStackTrace();
                           //  Log.e("TAG" , e.toString());
+                            Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -182,4 +191,6 @@ private RecyclerViewAdapter_api adapter;
         is_connected=info!=null&&info.isConnectedOrConnecting();
         return is_connected;
     }
+
+
 }

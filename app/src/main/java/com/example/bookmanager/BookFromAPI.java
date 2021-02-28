@@ -3,26 +3,31 @@ package com.example.bookmanager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class BookFromAPI {
     private String gTitle;
-    private String gAuthor;
+   private String gAuthor;
+//    private ArrayList<String> gAuthor;
     private String gDescription;
     private String gPreviewLink;
-    private String gCategory;
+   private String gCategory;
+ //   private ArrayList<String> gCategory;
     private int pageCount;
     private String gInfoLink;
     private String gpublishDate;
     private String gThumbnail;
 
-    public BookFromAPI(String gTitle, String gAuthor, String gDescription, int pageCount, String gCategory, String gPreviewLink, String gInfoLink,String gpublishDate, String gThumbnail){
+    public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,int pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink){
         this.gTitle=gTitle;
         this.gAuthor=gAuthor;
+        this.gpublishDate=gpublishDate;
         this.gDescription=gDescription;
         this.gCategory=gCategory;
         this.pageCount=pageCount;
         this.gInfoLink=gInfoLink;
         this.gPreviewLink=gPreviewLink;
-        this.gpublishDate=gpublishDate;
+
         this.gThumbnail=gThumbnail;
     }
 
@@ -55,4 +60,7 @@ public String getGpublishDate(){
 public  String getgThumbnail(){
         return this.gThumbnail;
 }
+
+//setteri
+
 }
