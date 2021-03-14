@@ -92,6 +92,11 @@ Button add1, add2;
                                                               intent.putExtra("Username", value_name);
                                                               startActivity(intent);
                                                           }
+                                                          else if(id_option == R.id.statisticsBtn){
+                                                              Intent intent = new Intent(HomePage.this,StatisticsPage.class);
+                                                              intent.putExtra("Username", value_name);
+                                                              startActivity(intent);
+                                                          }
                                                           return true;
                                                       }
 

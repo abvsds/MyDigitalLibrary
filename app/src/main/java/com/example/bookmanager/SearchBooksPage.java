@@ -145,7 +145,7 @@ try {
                                    // categories = volumeInfo.getString("categories");
                                   categories = volumeInfo.getJSONArray("categories").getString(0);
                             }catch (JSONException e){
-    Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
+   // Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -169,9 +169,9 @@ try {
 
 
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            //e.printStackTrace();
                           //  Log.e("TAG" , e.toString());
-                            Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -179,7 +179,8 @@ try {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+
+                //error.printStackTrace();
             }
         });
         requestqueue.add(request);

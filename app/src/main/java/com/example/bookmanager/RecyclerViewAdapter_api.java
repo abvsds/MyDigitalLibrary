@@ -39,9 +39,9 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
     }
     @NonNull
     @Override
-    public RecyclerViewAdapter_api.MyView onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public MyView onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view;
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater inflater = LayoutInflater.from(context);
         view = inflater.inflate(R.layout.book_item_raw_api , parent , false);
         final MyView viewHolder =  new MyView(view);
         viewHolder.card.setOnClickListener(new View.OnClickListener() {
@@ -49,14 +49,14 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
             public void onClick(View v) {
                 Intent i = new Intent(context , BookDetailsApi.class);
                 int pos = viewHolder.getAdapterPosition();
-                i.putExtra("title", GBooks.get(pos).getgTitle());
-                     /*   i.putExtra("authors", GBooks.get(pos).getgAuthor());
-                        i.putExtra("publishedDate", GBooks.get(pos).getGpublishDate());
-                        i.putExtra("description", GBooks.get(pos).getgDescription());
-                        i.putExtra("pageCount", GBooks.get(pos).getPageCount());
-                        i.putExtra("thumbnail", GBooks.get(pos).getgThumbnail());
-                        i.putExtra("previewLink", GBooks.get(pos).getgPreviewLink());
-        i.putExtra("infoLink", GBooks.get(pos).getgInfoLink());*/
+                i.putExtra("book_title", GBooks.get(pos).getgTitle());
+                      i.putExtra("book_authors", GBooks.get(pos).getgAuthor());
+                        i.putExtra("book_publishedDate", GBooks.get(pos).getGpublishDate());
+                        i.putExtra("book_description", GBooks.get(pos).getgDescription());
+                        i.putExtra("book_pageCount", GBooks.get(pos).getPageCount());
+                        i.putExtra("book_thumbnail", GBooks.get(pos).getgThumbnail());
+                        i.putExtra("book_previewLink", GBooks.get(pos).getgPreviewLink());
+                        i.putExtra("book_infoLink", GBooks.get(pos).getgInfoLink());
                      context.startActivity(i);
 
 
@@ -67,8 +67,8 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyView holder, int position) {
-        BookFromAPI book = GBooks.get(position);
+    public void onBindViewHolder(@NonNull MyView holder, int i) {
+        BookFromAPI book = GBooks.get(i);
         holder.tvTitle.setText(book.getgTitle());
         holder.tvAuthor.setText(book.getgAuthor());
         holder.tvCategory.setText( book.getgCategory());

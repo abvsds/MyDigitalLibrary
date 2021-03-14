@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class BookFromAPI {
     private String gTitle;
    private String gAuthor;
-//    private ArrayList<String> gAuthor;
+
     private String gDescription;
     private String gPreviewLink;
    private String gCategory;
- //   private ArrayList<String> gCategory;
+
     private int pageCount;
     private String gInfoLink;
     private String gpublishDate;
@@ -34,31 +34,31 @@ public class BookFromAPI {
     //getteri
 
     public String getgTitle(){
-        return this.gTitle;
+        return gTitle;
     }
     public String getgAuthor(){
-        return this.gAuthor;
+        return gAuthor;
     }
     public String getgDescription(){
-        return this.gDescription;
+        return gDescription;
     }
     public String getgInfoLink(){
-        return this.gInfoLink;
+        return gInfoLink;
     }
     public int getPageCount(){
-        return this.pageCount;
+        return pageCount;
     }
     public String getgPreviewLink(){
-        return this.gPreviewLink;
+        return gPreviewLink;
     }
     public String getgCategory(){
-        return this.gCategory;
+        return gCategory;
     }
 public String getGpublishDate(){
-        return this.gpublishDate;
+        return gpublishDate;
 }
 public  String getgThumbnail(){
-        return this.gThumbnail;
+        return gThumbnail;
 }
 
 //setteri
