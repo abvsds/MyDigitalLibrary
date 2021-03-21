@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddWishBooksPage">
+
+    <TextView
+        android:id="@+id/title2id"
+        android:layout_width="70dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="30dp"
+        android:layout_height="wrap_content"
+        android:text="Title" />
+
+    <EditText
+        android:id="@+id/EinputTitle2id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/title2id"
+        android:ems="10"
+        android:inputType="textPersonName" />
+    <TextView
+        android:id="@+id/author2id"
+        android:layout_width="70dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/title2id"
+        android:layout_height="wrap_content"
+        android:text="Author" />
+
+    <EditText
+        android:id="@+id/Einputauthor2id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/author2id"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:layout_width="170dp"
+        android:id="@+id/editbookBtn2id"
+        android:layout_height="50dp"
+        android:layout_below="@+id/author2id"
+        android:layout_marginLeft="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Update book"/>
+</RelativeLayout>

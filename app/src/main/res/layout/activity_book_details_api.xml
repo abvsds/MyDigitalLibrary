@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".BookDetailsApi">
 
-   <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:gravity="center_horizontal"
@@ -55,14 +53,6 @@
                 android:layout_marginRight="@+id/dateIdateid"
                 android:textSize="14sp" />
 
-       <!--     <TextView
-                android:id="@+id/dateId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="18.02.2021"
-                android:textSize="14sp" />-->
-
             <TextView
                 android:id="@+id/pageCountId"
                 android:layout_width="wrap_content"
@@ -80,27 +70,20 @@
                 android:id="@+id/descriptionbookapiId"
                 android:text="blalvlfllflsfdgdhj fxgfhgjhkj fddgfhgjh sdfghj fesrdfgh sdkiuytrew dfdgf"/>
 
-      <!--      <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="More info about this book:"/>-->
-            <TextView
+
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="more info"
                 android:id="@+id/infoLinkId"/>
 
-      <!--      <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Preview book:"/>-->
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/previewLinkId"
                 android:text="View preview"/>
 
         </LinearLayout>
-   </ScrollView>
-</LinearLayout>
+
+</ScrollView>

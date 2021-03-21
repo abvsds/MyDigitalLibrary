@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddReadBooksPage">
+
+
+    <TextView
+        android:id="@+id/title1id"
+        android:layout_width="70dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_height="wrap_content"
+        android:text="Title" />
+
+    <EditText
+        android:id="@+id/EinputTitle1id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/title1id"
+        android:ems="10"
+        android:inputType="textPersonName" />
+    <TextView
+        android:id="@+id/author1id"
+        android:layout_width="70dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/title1id"
+        android:layout_height="wrap_content"
+        android:text="Author" />
+
+    <EditText
+        android:id="@+id/Einputauthor1id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/author1id"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/description1id"
+        android:layout_width="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/author1id"
+        android:layout_height="wrap_content"
+        android:text="Description" />
+
+    <EditText
+        android:id="@+id/Einputdescription1id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="105dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/description1id"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/notes1id"
+        android:layout_width="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/description1id"
+        android:layout_height="wrap_content"
+        android:text="Notes" />
+
+    <EditText
+        android:id="@+id/Einputnotes1id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="155dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/notes1id"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+    <TextView
+        android:id="@+id/impresions1id"
+        android:layout_width="130dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/notes1id"
+        android:layout_height="wrap_content"
+        android:text="Impressions (Did you like this book?)" />
+
+    <EditText
+        android:id="@+id/Einputimpressions1id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/impresions1id"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/time1id"
+        android:layout_width="130dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/impresions1id"
+        android:layout_height="wrap_content"
+        android:text="How long did you read the book?" />
+
+    <EditText
+        android:id="@+id/Einputtime1id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_toRightOf="@+id/time1id"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:layout_width="170dp"
+        android:id="@+id/editbookBtn1id"
+        android:layout_height="50dp"
+        android:layout_below="@+id/time1id"
+        android:layout_marginLeft="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Update book"/>
+
+
+
+
+</RelativeLayout>

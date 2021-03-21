@@ -15,6 +15,7 @@ public class ViewReadBooks extends AppCompatActivity {
     ArrayList<String> Rbook_title, Rbook_author, description, impressions, notes, time, date;
     RecyclerView recyclerView;
     CustomAdapter1 customadapter;
+    ArrayList<BookReadModal> RBooks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,17 @@ public class ViewReadBooks extends AppCompatActivity {
         String username = getIntent().getStringExtra("Username");
         recyclerView = findViewById(R.id.listaId1);
         db = new SqliteDB(this);
-        Rbook_title=new ArrayList<>();
+
+        RBooks= new ArrayList<>();
+        RBooks=db.ViewReadBook(username);
+        customadapter = new CustomAdapter1(RBooks, ViewReadBooks.this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ViewReadBooks.this,RecyclerView.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(customadapter);
+
+
+        //------------------------------------------------------------------------------------
+        /*Rbook_title=new ArrayList<>();
         Rbook_author=new ArrayList<>();
         description=new ArrayList<>();
         impressions=new ArrayList<>();
@@ -46,6 +57,6 @@ date.add(c.getString(6));
             customadapter= new CustomAdapter1(ViewReadBooks.this, Rbook_title,Rbook_author,description, notes, impressions, time, date);
             recyclerView.setAdapter(customadapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(ViewReadBooks.this));
-        }
+        }*/
     }
 }

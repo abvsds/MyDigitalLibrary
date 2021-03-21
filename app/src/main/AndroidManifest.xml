@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookManager"
         android:usesCleartextTraffic="true">
-        <activity android:name=".StatisticsPage"></activity>
+        <activity android:name=".EditBookReadPage" android:label="Edit book read"></activity>
+        <activity
+            android:name=".EditWishBooksPage"
+            android:label="Edit Wish Book" />
+        <activity android:name=".StatisticsPage" />
         <activity android:name=".BookDetailsApi" />
         <activity
             android:name=".ViewReadBooks"
@@ -38,7 +42,7 @@
         <activity
             android:name=".RegisterPage"
             android:label="Register Form" />
-        <activity android:name=".LoginPage">
+        <activity android:name=".LoginPage" android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class SqliteDB extends SQLiteOpenHelper {
     public static final String DBNAME ="LoginUsers.db";
@@ -91,6 +93,34 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
             return true;
     }
 
+    public ArrayList<WishBookModal> ViewWishBook(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select titleWishBook, authorWishBook from WishBook where username = ?", new String[]{username});
+        ArrayList<WishBookModal> WishBookList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                WishBookList.add(new WishBookModal(cursor.getString(0), cursor.getString(1)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return WishBookList;
+    }
+
+    public ArrayList<BookReadModal> ViewReadBook(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select title, author, description, notes, impressions , time_period,  date from ReadBook where username = ?", new String[]{username});
+        ArrayList<BookReadModal> ReadBookList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                ReadBookList.add(new BookReadModal(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),cursor.getString(6)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return ReadBookList;
+    }
+
 
 
     public boolean checkusername(String username){
@@ -131,14 +161,6 @@ public String FormatData(Date date){
 
 
 
- public void DeleteWishBook( Integer id){
-     SQLiteDatabase MyDatabase = this.getWritableDatabase();
- //  Cursor w_book = MyDatabase.rawQuery("delete from WishBook where titleWishBook =?", new String[]{title});
-    MyDatabase.execSQL("delete from WihBook where idWishBook="+id+"");
-
-//return true;
-
- }
 
     public int countReadBooks(String username){
         int count=0;
@@ -160,5 +182,41 @@ public String FormatData(Date date){
          }
         }
         return count;
+    }
+
+    //editare wish book
+    public void UpdateWishBook(String orig_title,  String title, String author ){
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("titleWishBook", title);
+        contentValues.put("authorWishBook", author);
+        MyDatabase.update("WishBook", contentValues, "titleWishBook= ?",  new String[]{orig_title});
+
+       //MyDatabase.close();
+    }
+    public void DeleteWishBook(String title){
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.delete("WishBook", "titleWishBook=?", new String[]{title});
+
+    }
+
+    public void UpdateReadBook(String orig_title,  String title, String author, String description, String notes, String impression, String duration ){
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("title", title);
+        contentValues.put("author", author);
+        contentValues.put("description", description);
+        contentValues.put("notes", notes);
+        contentValues.put("impressions", impression);
+        contentValues.put("time_period", duration);
+        MyDatabase.update("ReadBook", contentValues, "title= ?",  new String[]{orig_title});
+
+        //MyDatabase.close();
+    }
+
+    public void DeleteReadBook(String title){
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.delete("ReadBook", "title=?", new String[]{title});
+
     }
 }

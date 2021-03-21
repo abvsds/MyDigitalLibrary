@@ -21,6 +21,7 @@ SqliteDB db;
 List<String> Wbook_title, Wbook_author;
 RecyclerView recycleview;
 CustomAdapter customadapter;
+ArrayList<WishBookModal> WBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,16 @@ CustomAdapter customadapter;
 
         recycleview = findViewById(R.id.listaId);
         db = new SqliteDB(this);
-        Wbook_title=new ArrayList<>();
+     WBooks = new ArrayList<>();
+     WBooks=db.ViewWishBook(username);
+        customadapter= new CustomAdapter(WBooks, ViewWishBooks.this);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ViewWishBooks.this,RecyclerView.VERTICAL, false);
+        recycleview.setLayoutManager(linearLayoutManager);
+        recycleview.setAdapter(customadapter);
+
+
+     //-------------------------------------------------------------------
+        /*Wbook_title=new ArrayList<>();
         Wbook_author=new ArrayList<>();
         Cursor list = db.viewWishBooks(username);
         if(list.getCount()==0){
@@ -45,7 +55,9 @@ CustomAdapter customadapter;
             customadapter= new CustomAdapter(ViewWishBooks.this, Wbook_title,Wbook_author);
             recycleview.setAdapter(customadapter);
             recycleview.setLayoutManager(new LinearLayoutManager(ViewWishBooks.this));
-        }
+        }*/
+
+    //---------------------------------------------------------------------------------------------------partea de sus merge
       //  ListView listview = (ListView) findViewById(R.id.listaId);
      //   db = new SqliteDB(this);
 
