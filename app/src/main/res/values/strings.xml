@@ -2,5 +2,6 @@
     <string name="app_name">Book Manager</string>
     <string name="Open">Book Manager</string>
     <string name="Close">Book Manager</string>
+    <string name="Here"><u>here</u></string>
 
 </resources>

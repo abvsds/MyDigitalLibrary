@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,13 +23,14 @@ List<String> Wbook_title, Wbook_author;
 RecyclerView recycleview;
 CustomAdapter customadapter;
 ArrayList<WishBookModal> WBooks;
+TextView message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_wish_books);
         String username = getIntent().getStringExtra("Username");
-
+        message=findViewById(R.id.tv_message);
         recycleview = findViewById(R.id.listaId);
         db = new SqliteDB(this);
      WBooks = new ArrayList<>();
@@ -37,6 +39,10 @@ ArrayList<WishBookModal> WBooks;
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(ViewWishBooks.this,RecyclerView.VERTICAL, false);
         recycleview.setLayoutManager(linearLayoutManager);
         recycleview.setAdapter(customadapter);
+
+        if(WBooks.size()==0){
+            message.setText("You have no books in this list. Please go back to the main page to add one. ");
+        }
 
 
      //-------------------------------------------------------------------

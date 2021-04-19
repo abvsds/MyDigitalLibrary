@@ -3,9 +3,10 @@ package com.example.bookmanager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BookFromAPI {
+public class BookFromAPI implements Serializable {
     private String gTitle;
    private String gAuthor;
 
@@ -18,18 +19,7 @@ public class BookFromAPI {
     private String gpublishDate;
     private String gThumbnail;
 
-    public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,int pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink){
-        this.gTitle=gTitle;
-        this.gAuthor=gAuthor;
-        this.gpublishDate=gpublishDate;
-        this.gDescription=gDescription;
-        this.gCategory=gCategory;
-        this.pageCount=pageCount;
-        this.gInfoLink=gInfoLink;
-        this.gPreviewLink=gPreviewLink;
 
-        this.gThumbnail=gThumbnail;
-    }
 
     //getteri
 
@@ -62,5 +52,16 @@ public  String getgThumbnail(){
 }
 
 //setteri
+public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,int pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink){
+    this.gTitle=gTitle;
+    this.gAuthor=gAuthor;
+    this.gpublishDate=gpublishDate;
+    this.gDescription=gDescription;
+    this.gCategory=gCategory;
+    this.pageCount=pageCount;
+    this.gInfoLink=gInfoLink;
+    this.gPreviewLink=gPreviewLink;
 
+    this.gThumbnail=gThumbnail;
+}
 }

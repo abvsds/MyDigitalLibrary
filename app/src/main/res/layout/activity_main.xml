@@ -30,6 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_baseline_person_24"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName" />
@@ -42,6 +43,7 @@
         android:layout_below="@+id/usernameId"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:drawableStart="@drawable/ic_baseline_lock_open_24"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="#566573"
@@ -58,32 +60,41 @@
         android:text="Login"
         tools:visibility="visible" />
 
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clicktoresetpass"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:layout_marginStart="25dp"
+        android:textSize="15dp"
+        android:layout_below="@+id/loginId"
+        android:layout_marginTop="60dp"/>
+
+ <!--   <TextView
         android:id="@+id/textViewId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginId"
         android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
         android:clickable="false"
         android:text="Not registered? Create an account"
         android:textColor="#566573"
-        android:textColorLink="@color/purple_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginId"
-        app:layout_constraintVertical_bias="0.148" />
+        android:textColorLink="@color/purple_700" />-->
 
-    <Button
+    <TextView
         android:id="@+id/gotoregisterID"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_below="@+id/textViewId"
-        android:layout_marginStart="220dp"
-        android:layout_marginLeft="250dp"
+        android:layout_height="16dp"
+        android:layout_below="@+id/clicktoresetpass"
+        android:layout_marginStart="20dp"
 
-        android:layout_marginTop="-27dp"
-        android:layout_marginEnd="250dp"
-        android:text="here" />
+       android:layout_centerHorizontal="true"
+        android:text="aaaaaaaaa"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="12dp"
+         />
 </RelativeLayout>

@@ -12,10 +12,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,8 +53,8 @@ private RecyclerViewAdapter_api adapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_books_page);
     //    searchBar=findViewById(R.id.searchbarID);
-        search_text=findViewById(R.id.search_box);
-        searchbtn=findViewById(R.id.searchBTN);
+    //   search_text=findViewById(R.id.search_box);
+    //   searchbtn=findViewById(R.id.searchBTN);
       //  loading=findViewById(R.id.loading_indicator);
        error_message= findViewById(R.id.message_display);
 
@@ -61,7 +64,7 @@ private RecyclerViewAdapter_api adapter;
         GoogleBooks=new ArrayList<>();
         requestqueue= Volley.newRequestQueue(this);
 
-        searchbtn.setOnClickListener(new View.OnClickListener() {
+    /*    searchbtn.setOnClickListener(new View.OnClickListener() {
            @Override
             public void onClick(View v) {
                GoogleBooks.clear();
@@ -96,8 +99,50 @@ private RecyclerViewAdapter_api adapter;
         Uri uri=Uri.parse(base_url+final_query);
         Uri.Builder buider = uri.buildUpon();
 
-        parseJson(buider.toString());
+        parseJson(buider.toString());*/
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search_bar_google_books, menu);
+        MenuItem menuitem = menu.findItem(R.id.searchIcon);
+        SearchView searchView = (SearchView) menuitem.getActionView();
+        searchView.setQueryHint("Type some words here..");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                boolean is_connected = Read_network_state(SearchBooksPage.this);
+                if(!is_connected)
+                {
+                    error_message.setText("Failed to Load data. Please check your internet connection!");
+                    recycler_v.setVisibility(View.INVISIBLE);
+                    error_message.setVisibility(View.VISIBLE);
+                    return true;
+                }
+                GoogleBooks.clear();
+                if(query.equals(""))
+                {
+                    Toast.makeText(SearchBooksPage.this,"Please enter your query",Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                String final_query=query.replace(" ","+");
+                Uri uri=Uri.parse(base_url+final_query);
+                Uri.Builder buider = uri.buildUpon();
+
+                parseJson(buider.toString());
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     private void parseJson(String key) {
 
@@ -161,9 +206,9 @@ try {
 
 
                                 GoogleBooks.add(new BookFromAPI(title , author ,  publishedDate,description, pageCount, categories, thumbnail,previewLink, infoLink));
+                        
 
-
-                                adapter = new RecyclerViewAdapter_api(SearchBooksPage.this , GoogleBooks);
+                                adapter = new RecyclerViewAdapter_api( GoogleBooks, SearchBooksPage.this);
                              recycler_v.setAdapter(adapter);
                             }
 

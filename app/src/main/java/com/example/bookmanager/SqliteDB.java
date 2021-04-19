@@ -5,11 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SqliteDB extends SQLiteOpenHelper {
     public static final String DBNAME ="LoginUsers.db";
@@ -53,7 +62,20 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
         else
             return true;
     }
- // insert into ReadBooks
+
+
+    public Boolean updatePass(String username, String password){
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("password", password);
+        long result = MyDatabase.update ("Users", contentValues,"username=?", new String[] {username});
+
+        if(result==-1)
+            return false;
+        else
+            return true;
+    }
 
     public boolean insertReadBook(String title, String author, String description, String notes, String impressions, String period, String username){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
@@ -103,12 +125,21 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
                 WishBookList.add(new WishBookModal(cursor.getString(0), cursor.getString(1)));
             } while (cursor.moveToNext());
         }
+        else if(cursor.getCount()==0){
+
+        }
         cursor.close();
         return WishBookList;
     }
 
+    public String format_date(Date date){
+
+        String format=  new SimpleDateFormat("yyyy, month dd").format(date);
+        return format;
+    }
     public ArrayList<BookReadModal> ViewReadBook(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor cursor = db.rawQuery("select title, author, description, notes, impressions , time_period,  date from ReadBook where username = ?", new String[]{username});
         ArrayList<BookReadModal> ReadBookList = new ArrayList<>();
 
@@ -219,4 +250,38 @@ public String FormatData(Date date){
         db.delete("ReadBook", "title=?", new String[]{title});
 
     }
-}
+
+    public ArrayList<BarEntry> getBarEntries(String username) {
+      //  String income_sum_column = "income_sum";
+        SQLiteDatabase db = this.getReadableDatabase();
+     //   String[] columns = new String[]{"SUM(income) AS " + income_sum_column, "income_category"};
+        Cursor csr = db.rawQuery("select count(date) as books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+        ArrayList<BarEntry> data_bar_chart = new ArrayList<>();
+        while (csr.moveToNext()) {
+            data_bar_chart.add(new BarEntry(
+                    csr.getInt(csr.getColumnIndex("month")),
+                    csr.getInt(csr.getColumnIndex("books_number"))
+            ));
+        }
+        csr.close();
+        return data_bar_chart;
+    }
+//        Cursor csr = db.rawQuery("select round(1.0*100*count(date)/(select count(*) from ReadBook where username=?), 2) as percent_books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+    public ArrayList<PieEntry> getPieEntries(String username) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        //   String[] columns = new String[]{"SUM(income) AS " + income_sum_column, "income_category"};
+    Cursor csr = db.rawQuery("select round(1.0*100*count(date)/(select count(*) from ReadBook where username=?), 2) as percent_books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+        ArrayList<PieEntry> data_pie_chart = new ArrayList<>();
+
+
+        while (csr.moveToFirst()) {
+            String month = csr.getString(1);
+            float percentage = csr.getFloat(2);
+            data_pie_chart.add(new PieEntry(percentage, month));
+        }
+
+        csr.close();
+        return data_pie_chart;
+    }
+    }

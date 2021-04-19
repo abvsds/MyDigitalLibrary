@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,11 +17,13 @@ public class ViewReadBooks extends AppCompatActivity {
     RecyclerView recyclerView;
     CustomAdapter1 customadapter;
     ArrayList<BookReadModal> RBooks;
+    TextView message1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_read_books);
         String username = getIntent().getStringExtra("Username");
+        message1=findViewById(R.id.tv_message_1);
         recyclerView = findViewById(R.id.listaId1);
         db = new SqliteDB(this);
 
@@ -31,6 +34,9 @@ public class ViewReadBooks extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(customadapter);
 
+        if(RBooks.size()==0){
+            message1.setText("You have no books in this list. Please go back to the main page to add one. ");
+        }
 
         //------------------------------------------------------------------------------------
         /*Rbook_title=new ArrayList<>();

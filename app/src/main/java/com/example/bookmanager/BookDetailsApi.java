@@ -48,13 +48,13 @@ public class BookDetailsApi extends AppCompatActivity {
             coverBook= extras.getString("book_thumbnail");
         }
 */
-
+//--------------------------------------------------------------------------
          tv_title= findViewById(R.id.titlebookapiId);
         tv_author=findViewById(R.id.authorbookapiId);
-         tv_description= findViewById(R.id.descriptionbookapiId);
-          tv_publishDate = findViewById(R.id.pubDateid);
-          tv_infoLink = findViewById(R.id.infoLinkId);
-          tv_previewLink= findViewById(R.id.previewLinkId);
+        //tv_description= findViewById(R.id.descriptionbookapiId);
+        //   tv_publishDate = findViewById(R.id.pubDateid);
+         /*  tv_infoLink = findViewById(R.id.infoLinkId);
+          tv_previewLink= findViewById(R.id.previewLinkId);*/
           tv_pages = findViewById(R.id.pageCountId);
           tv_cover = findViewById(R.id.bookCoverId);
 
@@ -62,25 +62,25 @@ public class BookDetailsApi extends AppCompatActivity {
 
 
      //   }
-
-        title = getIntent().getStringExtra("title");
+//----------------------------------------------------------
+       title = getIntent().getStringExtra("title");
         author = getIntent().getStringExtra("author");
         publishDate = getIntent().getStringExtra("publishedDate");
-        descriptionBook = getIntent().getStringExtra("description");
-        pageCount = getIntent().getIntExtra("pageCount", 0);
+        /* descriptionBook = getIntent().getStringExtra("description");*/
+        pageCount = (int) getIntent().getSerializableExtra("pageCount");
         coverBook = getIntent().getStringExtra("thumbnail");
-        previewLink = getIntent().getStringExtra("previewLink");
-        infoLink = getIntent().getStringExtra("infoLink");
-
+       /* previewLink = getIntent().getStringExtra("previewLink");
+        infoLink = getIntent().getStringExtra("infoLink");*/
+//---------------------------------------------------------------------------
 
 
         tv_title.setText(title);
      tv_author.setText( author);
-        tv_description.setText(descriptionBook);
-        tv_publishDate.setText("Publish Date: "+ publishDate);
-        tv_pages.setText(pageCount);
+        //tv_description.setText(descriptionBook);
+      //  tv_publishDate.setText("Publish Date: "+ publishDate);
+         tv_pages.setText(pageCount);
         Picasso.get().load(coverBook).into(tv_cover);
-
+//-------------------------------------------------------------------------------
 
 
 /*final String finalinfo=infoLink;
@@ -105,7 +105,9 @@ tv_infoLink.setOnClickListener(new View.OnClickListener() {
 
    //     Glide.with(this).load(coverBook).apply(requestOptions).into(tv_cover);
      //   final String finalinfo=infoLink;
-        tv_infoLink.setOnClickListener(new View.OnClickListener() {
+
+        //---------------------------------------------------------------------------------------------------------------
+       /* tv_infoLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(infoLink.isEmpty()){
@@ -133,7 +135,8 @@ tv_infoLink.setOnClickListener(new View.OnClickListener() {
                 Intent i = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(i);
             }
-        });
+        })*/
 
     }
+    //------------------------------------------------------------------------------------------
 }

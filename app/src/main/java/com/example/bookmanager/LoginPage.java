@@ -1,18 +1,28 @@
 package com.example.bookmanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
-  Button loginBtn, goTo_register;
+  Button loginBtn;
+  TextView goTo_register;
   EditText username, password;
   SqliteDB DB;
+  TextView resetPass, register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +61,7 @@ public class LoginPage extends AppCompatActivity {
 
 
 
-goTo_register = (Button) findViewById(R.id.gotoregisterID);
+goTo_register =  findViewById(R.id.gotoregisterID);
 goTo_register.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -59,6 +69,47 @@ goTo_register.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+
+resetPass=findViewById(R.id.clicktoresetpass);
+        SpannableString clicktoreset= new SpannableString("Forgot your password? Please click here to reset a new password.");
+        ClickableSpan clickable = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                String user = username.getText().toString();
+              Intent i= new Intent(LoginPage.this, ResetPassword.class);
+              i.putExtra("Username", user);
+              startActivity(i);
+
+
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setUnderlineText(true);
+            }
+        };
+        clicktoreset.setSpan(clickable, 29, 39, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
+        resetPass.setText(clicktoreset);
+       resetPass.setMovementMethod(LinkMovementMethod.getInstance());
+
+        register= findViewById(R.id.gotoregisterID);
+        SpannableString clicktoregister= new SpannableString("Not registered? Create an account here");
+        ClickableSpan clickable1 = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                startActivity(new Intent(LoginPage.this, RegisterPage.class));
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint dss) {
+                super.updateDrawState(dss);
+                dss.setUnderlineText(true);
+            }
+        };
+        clicktoregister.setSpan(clickable1, 34, 38, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
+        register.setText(clicktoregister);
+        register.setMovementMethod(LinkMovementMethod.getInstance());
     }
 public void openRegisterPage(){
         Intent intent= new Intent (this, RegisterPage.class);

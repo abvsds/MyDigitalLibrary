@@ -141,7 +141,6 @@ add1.setOnClickListener(new View.OnClickListener() {
 
 
 
-
 }
   //  @Override
   //  public boolean onCreateOptionsMenu(Menu menu){
@@ -165,6 +164,13 @@ add1.setOnClickListener(new View.OnClickListener() {
       //  }
  //       return bardrawer.onOptionsItemSelected(item);
    //     }
-
+      @Override
+      public void onBackPressed() {
+          Intent i = new Intent(getApplicationContext(), LoginPage.class);
+          i.putExtra("finish", true);
+          i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          startActivity(i);
+          finish();
+      }
     }
 
