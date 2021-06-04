@@ -1,7 +1,10 @@
 package com.example.bookmanager;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +22,10 @@ SqliteDB db;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_read_books_page);
 
+        ActionBar actionBar;
+        actionBar=getSupportActionBar();
+        ColorDrawable colorDrawable= new ColorDrawable(Color.parseColor("#FF6200EE"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         titleReadB = findViewById(R.id.inputTitle1id);
         authorReadB= findViewById(R.id.inputauthor1id);
@@ -38,19 +45,21 @@ SqliteDB db;
                 String impress = impressions.getText().toString();
                 String period = time_period.getText().toString();
                 String username = getIntent().getStringExtra("Username");
+                if (title.equals(" ") || author.equals("") || period.equals("") || descrip.equals(""))
+                    Toast.makeText(AddReadBooksPage.this, "The fields related Title, Author, Description and Time are mandatory.", Toast.LENGTH_SHORT).show();
+                else {
+                    boolean insertation = db.insertReadBook(title, author, descrip, note, impress, period, username);
+                    if (insertation == true) {
+                        Toast.makeText(AddReadBooksPage.this, " Book added successful.", Toast.LENGTH_SHORT).show();
+                        titleReadB.setText("");
+                        authorReadB.setText("");
+                        description.setText("");
+                        notes.setText("");
+                        impressions.setText("");
+                        time_period.setText("");
+                    }
 
-                boolean insertation = db.insertReadBook(title, author, descrip, note, impress, period ,username );
-                if (insertation == true) {
-                    Toast.makeText(AddReadBooksPage.this, " Book added successful.", Toast.LENGTH_SHORT).show();
-                    titleReadB.setText("");
-                    authorReadB.setText("");
-                    description.setText("");
-                    notes.setText("");
-                    impressions.setText("");
-                    time_period.setText("");
                 }
-
-
 
             }
         });

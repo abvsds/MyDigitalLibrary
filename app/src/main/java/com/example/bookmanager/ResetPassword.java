@@ -21,11 +21,11 @@ Button resetPass;
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
-                    "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>])" +     // at least 1 special character
+                    "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>])" +
                     "(?=.*[0-9])"+
-                    "(?=.*[a-z])"+       // at least one lowercase letter
-                    "(?=.*[A-Z])"+        // // at least one uppercase letter
-                    ".{10,}" +                // at least 10 characters
+                    "(?=.*[a-z])"+
+                    "(?=.*[A-Z])"+
+                    ".{10,}" +
                     "$");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ Button resetPass;
         resetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // String user = tv_username.getText().toString();
+
                 String pass = pass_r.getText().toString();
                 String repass = repass_r.getText().toString();
 
@@ -53,7 +53,7 @@ Button resetPass;
                     if ( pass.equals(repass)) {
 
                        if(PASSWORD_PATTERN.matcher(pass).matches()){
-                    //    if (pass.length() >= 10 && pass.matches("[0-9]+") && pass.contains("[a-zA-Z]+")) {
+
                             boolean update = db.updatePass(value_name, pass);
                             if (update) {
                                 Toast.makeText(ResetPassword.this, "Password was modified successfully", Toast.LENGTH_SHORT).show();

@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runner.Runner;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(AndroidJUnit4.class)
+@RunWith(ExampleInstrumentedTest.AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
@@ -23,4 +24,6 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.bookmanager", appContext.getPackageName());
     }
+
+
 }

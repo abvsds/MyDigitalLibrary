@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,20 +15,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.Mydisplay> {
     private Context context;
     SqliteDB db;
-    private RecyclerView recyclerview;
-  private List Wbook_title, Wbook_author;
   ArrayList<WishBookModal> WBookList;
-  /*  CustomAdapter(Context context, List Wbook_title, List Wbook_author){
-        this.context=context;
-        this.Wbook_title=Wbook_title;
-        this.Wbook_author=Wbook_author;
-    }*/
 
     CustomAdapter(ArrayList<WishBookModal> WBookList, Context context){
         this.WBookList=WBookList;
@@ -62,16 +55,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.Mydisplay>
 
                             if( id == R.id.EditIdW){
                                Intent updateW= new Intent(context, EditWishBooksPage.class);
-
+                               updateW.putExtra("username", modal.getW_username());
                                updateW.putExtra("title",modal.getW_title());
                                 updateW.putExtra("author",modal.getW_author());
                                 context.startActivity(updateW);
                             }
                             else if( id ==R.id.DeleteIdW) {
 
-                                  AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                               AlertDialog.Builder alert = new AlertDialog.Builder(context);
                                   alert.setTitle("Delete a book");
-                                   alert.setMessage("Are you sure that you want to delete this book?");
+                                   alert.setMessage("Are you sure you want to delete the book " +"'"+modal.getW_title()+"'"+" from your wishlist?  ");
                                 alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -83,7 +76,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.Mydisplay>
                                        @Override
                                           public void onClick(DialogInterface dialog, int which) {
                                            db = new SqliteDB(context);
-                                           db.DeleteWishBook(modal.getW_title());
+                                           db.DeleteWishBook(modal.getW_title(), modal.getW_username());
                                            WBookList.remove(position);
                                            notifyItemRemoved(position);
                                            Toast.makeText(context,"Your book was deleted", Toast.LENGTH_LONG).show();

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_page"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".GoogleMaps" >
+
+<Button
+    android:layout_width="150dp"
+    android:layout_height="60dp"
+    android:id="@+id/bookstores"
+    android:background="@drawable/button_from_map"
+    android:fontFamily="@font/aclonica"
+    android:textAllCaps="false"
+    android:textColor="@color/black"
+    android:layout_marginTop="30dp"
+    android:layout_marginStart="20dp"
+    android:text="View nearby Bookstores"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:id="@+id/libraries"
+        android:background="@drawable/button_from_map"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="190dp"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:text="View nearby Libraries"/>
+
+
+
+  <!--  <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/refreshLocation"
+        android:background="@drawable/ic_baseline_my_location_24"
+        android:layout_marginTop="530dp"
+        android:layout_marginStart="290dp"
+        android:textAllCaps="false" />-->
+
+<fragment android:id="@+id/map"
+android:name="com.google.android.gms.maps.SupportMapFragment"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".GoogleMaps" />
+
+
+</RelativeLayout>

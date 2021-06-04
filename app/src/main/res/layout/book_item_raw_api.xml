@@ -1,65 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:padding="8dp"
-    android:id="@+id/bookLine">
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:id="@+id/thumbnailLink" />
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:text="Title"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="Author"
-            android:maxLines="2"
-            />
-
-        <TextView
-            android:id="@+id/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="12sp"
-            android:maxLines="1"
-            android:text="category" />
-
-
-
-
-
-
-    </LinearLayout>
-
-</LinearLayout>-->
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/bookLine"
-    android:layout_marginTop="12dp"
-    >
+    app:cardBackgroundColor="#D7BDE2"
+    android:layout_marginTop="12dp">
+
+
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -67,29 +17,30 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="130dp"
-        android:id="@+id/thumbnailLink"
-   />
-
-
+        android:id="@+id/thumbnailLink" />
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="3"
         android:layout_marginTop="20dp"
-        android:layout_toEndOf="@+id/thumbnailLink"
+        android:layout_marginStart="120dp"
+        android:fontFamily="casual"
         android:text="Title"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
             android:id="@+id/author"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-        android:layout_below="@+id/title"
+            android:layout_below="@+id/title"
+            android:fontFamily="casual"
             android:text="Author"
-        android:layout_toEndOf="@+id/thumbnailLink"
+            android:layout_marginStart="120dp"
 
             />
 
@@ -100,16 +51,67 @@
             android:layout_marginTop="5dp"
             android:layout_below="@+id/author"
             android:textSize="12sp"
-
             android:layout_toEndOf="@+id/thumbnailLink"
             android:text="category" />
+
+    <TextView
+        android:id="@+id/pubDateidd"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="8dp"
+        android:text="Published date"
+        android:textSize="14sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionbookapiIdd"
+        android:layout_marginTop="100dp"
+        android:text="blalvlfllflsfdgdhj fxgfhgjhkj fddgfhgjh sdfghj fesrdfgh sdkiuytrew dfdgf"/>
+   <!--     <TextView
+           android:id="@+id/pageCountIdd"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="260dp"
+           android:text="200 pages"
+           android:textSize="14sp" />-->
+
     <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/category"
-        android:layout_marginStart="100dp"
-        android:text="More info"
-        android:id="@+id/butonApi"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="more info"
+        android:id="@+id/infoLinkIdd"/>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/previewLinkIdd"
+        android:layout_marginTop="200dp"
+        android:text="View preview"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/addtoWishlist"
+        android:textAllCaps="false"
+        android:background="@drawable/button_from_map"
+        android:layout_marginStart="200dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Add to WishList"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/check_mark"
+        android:textAllCaps="false"
+        android:background="@drawable/ic_baseline_check_circle_outline_24"
+        android:layout_marginStart="250dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="80dp" />
 
 
 
@@ -118,5 +120,6 @@
 
 
 
-</RelativeLayout>
-</androidx.cardview.widget.CardView>
+
+</RelativeLayout></androidx.cardview.widget.CardView>
+

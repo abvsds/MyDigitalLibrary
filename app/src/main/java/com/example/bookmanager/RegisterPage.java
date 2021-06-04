@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.SpannableString;
@@ -11,6 +12,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,19 +22,18 @@ import android.widget.Toast;
 import java.util.regex.Pattern;
 
 public class RegisterPage extends AppCompatActivity {
-EditText name, email_registration, username_registration, password_registration, repassword;
+EditText name, username_registration, password_registration, repassword;
 Button signup;
 TextView signin, backtologin;
-//declara un obiect de tip clasa SqliteDB
 SqliteDB DB;
 
     private static final Pattern PASSWORD_PATTERN1 =
             Pattern.compile("^" +
-                    "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>])" +     // at least 1 special character
+                    "(?=.*[!@#&()–[{}]:;',?/*~$^+=<>])" +
                     "(?=.*[0-9])"+
-                    "(?=.*[a-z])"+       // at least one lowercase letter
-                    "(?=.*[A-Z])"+        // // at least one uppercase letter
-                    ".{10,}" +                // at least 10 characters
+                    "(?=.*[a-z])"+
+                    "(?=.*[A-Z])"+
+                    ".{10,}" +
                     "$");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +41,11 @@ SqliteDB DB;
         setContentView(R.layout.activity_register_page);
 
         name = (EditText)findViewById(R.id.r_nameId);
-       // email_registration = (EditText)findViewById(R.id.r_emailId);
         username_registration= (EditText)findViewById(R.id.r_usernameId);
         password_registration = (EditText) findViewById(R.id.r_passwordId);
         repassword = (EditText) findViewById(R.id.repasswordId);
         signup = (Button) findViewById(R.id.r_buttonId);
         signin = findViewById(R.id.backtoLoginId);
-        //initializare baza de date
         DB =  new SqliteDB(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +105,7 @@ else {
             }
         });
 backtologin=findViewById(R.id.backtoLoginId);
-        SpannableString backLogin= new SpannableString("If you already have an account, please ga to login page.");
+        SpannableString backLogin= new SpannableString("If you already have an account, please go to login page.");
         ClickableSpan clickable2 = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
@@ -120,6 +119,8 @@ backtologin=findViewById(R.id.backtoLoginId);
             }
         };
         backLogin.setSpan(clickable2, 45, 55, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
+        ForegroundColorSpan foregroundColorSpan= new ForegroundColorSpan(Color.MAGENTA);
+        backLogin.setSpan(foregroundColorSpan, 45, 55, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         backtologin.setText(backLogin);
         backtologin.setMovementMethod(LinkMovementMethod.getInstance());
     }

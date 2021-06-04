@@ -1,5 +1,6 @@
 package com.example.bookmanager;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -20,20 +22,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ServiceConfigurationError;
+
 
 public class SearchBooksPage extends AppCompatActivity {
 private RecyclerView recycler_v;
@@ -41,67 +39,32 @@ private RecyclerViewAdapter_api adapter;
   public ArrayList<BookFromAPI> GoogleBooks;
     private RequestQueue requestqueue;
     private static final String base_url="https://www.googleapis.com/books/v1/volumes?q=";
-   // private SearchView searchBar;
-    EditText search_text;
-    Button searchbtn;
-  //  ProgressBar loading;
+
+
    TextView error_message;
 
-
+    String value_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_books_page);
-    //    searchBar=findViewById(R.id.searchbarID);
-    //   search_text=findViewById(R.id.search_box);
-    //   searchbtn=findViewById(R.id.searchBTN);
-      //  loading=findViewById(R.id.loading_indicator);
-       error_message= findViewById(R.id.message_display);
+        value_name = getIntent().getStringExtra("Username");
 
-      recycler_v=findViewById(R.id.recyclerID);
-      recycler_v.setHasFixedSize(true);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FF6200EE"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+
+
+        error_message = findViewById(R.id.message_display);
+
+        recycler_v = findViewById(R.id.recyclerID);
+        recycler_v.setHasFixedSize(true);
         recycler_v.setLayoutManager(new LinearLayoutManager(this));
-        GoogleBooks=new ArrayList<>();
-        requestqueue= Volley.newRequestQueue(this);
-
-    /*    searchbtn.setOnClickListener(new View.OnClickListener() {
-           @Override
-            public void onClick(View v) {
-               GoogleBooks.clear();
-                search();
-            }
-        });
-
+        GoogleBooks = new ArrayList<>();
+        requestqueue = Volley.newRequestQueue(this);
 
     }
-    private void search(){
-     // String search_word= searchBar.getTooltipText().toString();
-      String search_word = search_text.getText().toString();
-
-       boolean is_connected = Read_network_state(this);
-        if(!is_connected)
-        {
-            error_message.setText("Failed to Load data. Please check your internet connection!");
-            recycler_v.setVisibility(View.INVISIBLE);
-            error_message.setVisibility(View.VISIBLE);
-            return;
-        }
-
-        //  Log.d("QUERY",search_query);
-
-
-        if(search_word.equals(""))
-        {
-           Toast.makeText(this,"Please enter your query",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String final_query=search_word.replace(" ","+");
-        Uri uri=Uri.parse(base_url+final_query);
-        Uri.Builder buider = uri.buildUpon();
-
-        parseJson(buider.toString());*/
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search_bar_google_books, menu);
@@ -111,28 +74,38 @@ private RecyclerViewAdapter_api adapter;
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                boolean is_connected = Read_network_state(SearchBooksPage.this);
-                if(!is_connected)
-                {
-                    error_message.setText("Failed to Load data. Please check your internet connection!");
-                    recycler_v.setVisibility(View.INVISIBLE);
-                    error_message.setVisibility(View.VISIBLE);
-                    return true;
-                }
                 GoogleBooks.clear();
-                if(query.equals(""))
-                {
-                    Toast.makeText(SearchBooksPage.this,"Please enter your query",Toast.LENGTH_SHORT).show();
+                    boolean is_connected = Read_network_state(SearchBooksPage.this);
+                    if (!is_connected) {
+                        error_message.setText("Failed to load data. Please check your internet connection!");
+                        recycler_v.setVisibility(View.INVISIBLE);
+                        error_message.setVisibility(View.VISIBLE);
+                        return true;
+                    }
+
+                    String final_query = query.replace(" ", "+");
+              /*  if (query.length()==0) {
+                   *//* error_message.setText("Please insert the whole title or few suggestive words. ");
+                    recycler_v.setVisibility(View.INVISIBLE);
+                    error_message.setVisibility(View.VISIBLE);*//*
+
+                    Toast.makeText(SearchBooksPage.this, "Please enter your query", Toast.LENGTH_SHORT).show();
                     return true;
+                } else {*/
+                    Uri uri = Uri.parse(base_url + final_query);
+                    Uri.Builder buider = uri.buildUpon();
+
+                    parseJson(buider.toString());
+
+                  /*  GoogleBooks.size();
+                error_message.setText("ghjkl;'");
+                recycler_v.setVisibility(View.INVISIBLE);
+                error_message.setVisibility(View.VISIBLE);*/
+
+                    return true;
+
                 }
-                String final_query=query.replace(" ","+");
-                Uri uri=Uri.parse(base_url+final_query);
-                Uri.Builder buider = uri.buildUpon();
 
-                parseJson(buider.toString());
-
-                return true;
-            }
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -145,93 +118,65 @@ private RecyclerViewAdapter_api adapter;
 
 
     private void parseJson(String key) {
-
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, key.toString(), null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                     //  loading.setVisibility(View.GONE);
                         String title ="";
                       String author ="";
                       String publishedDate = "NoT Available";
                       String description = "No Description";
-                        int pageCount = 100;
+                        int pageCount = 1000;
                       String categories = "No category ";
-                      String thumbnail ="http://books.google.com/books/content?id=SM7CDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api";
+                      String thumbnail ="";
                       String previewLink="";
                       String infoLink =" ";
 
-
-                        try {
+                       try {
                             JSONArray items = response.getJSONArray("items");
 
                             for (int i = 0 ; i< items.length() ;i++){
                                 JSONObject item = items.getJSONObject(i);
                                 JSONObject volumeInfo = item.getJSONObject("volumeInfo");
-try {
-    title = volumeInfo.getString("title");
+                        try {
+                              title = volumeInfo.optString("title");
+                              JSONArray authors = volumeInfo.getJSONArray("authors");
+                              if (authors.length() == 1) {
+                                 author = authors.optString(0);
+                            } else {
+                         author = authors.optString(0) + "/" + authors.getString(1);
+                        }
+                          publishedDate = volumeInfo.optString("publishedDate");
+                              pageCount = volumeInfo.getInt("pageCount");
+                              description = volumeInfo.optString("description");
+                              categories = volumeInfo.getJSONArray("categories").optString(0);
+                          }catch (JSONException e){
 
-    JSONArray authors = volumeInfo.getJSONArray("authors");
-
-    if (authors.length() == 1) {
-        author = authors.getString(0);
-    } else {
-        author = authors.getString(0) + "/" + authors.getString(1);
-    }
-
-
-    publishedDate = volumeInfo.getString("publishedDate");
-    pageCount = volumeInfo.getInt("pageCount");
-
-
-
-                                  //  JSONObject saleInfo = item.getJSONObject("saleInfo");
-                                    description = volumeInfo.getString("description");
-                                   // categories = volumeInfo.getString("categories");
-                                  categories = volumeInfo.getJSONArray("categories").getString(0);
-                            }catch (JSONException e){
-   // Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
                             }
-
-
-             thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
-
-    //   thumbnail=volumeInfo.optString("thumbnail");
-    previewLink = volumeInfo.getString("previewLink");
-    infoLink = volumeInfo.getString("infoLink");
-
-
-
-
-
-
-                                GoogleBooks.add(new BookFromAPI(title , author ,  publishedDate,description, pageCount, categories, thumbnail,previewLink, infoLink));
-                        
-
+                          thumbnail = volumeInfo.getJSONObject("imageLinks").optString("thumbnail");
+                          previewLink = volumeInfo.optString("previewLink");
+                          infoLink = volumeInfo.optString("infoLink");
+                                GoogleBooks.add(new BookFromAPI(title , author ,  publishedDate,description, pageCount, categories, thumbnail,previewLink, infoLink, value_name));
                                 adapter = new RecyclerViewAdapter_api( GoogleBooks, SearchBooksPage.this);
+                                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SearchBooksPage.this, RecyclerView.VERTICAL, false);
+                                recycler_v.setLayoutManager(linearLayoutManager);
                              recycler_v.setAdapter(adapter);
                             }
+                       } catch (JSONException e) {
 
-
-                        } catch (JSONException e) {
-                            //e.printStackTrace();
-                          //  Log.e("TAG" , e.toString());
-                           // Toast.makeText(SearchBooksPage.this, "error:  "+ e, Toast.LENGTH_SHORT).show();
 
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                //error.printStackTrace();
             }
         });
         requestqueue.add(request);
     }
     private boolean Read_network_state(Context context)
-    {    boolean is_connected;
+    {   boolean is_connected;
         ConnectivityManager cm =(ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo info = cm.getActiveNetworkInfo();
         is_connected=info!=null&&info.isConnectedOrConnecting();

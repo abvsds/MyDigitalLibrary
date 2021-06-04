@@ -1,25 +1,22 @@
 package com.example.bookmanager;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.collection.ArrayMap;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.Cursor;
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
 
 public class ViewWishBooks extends AppCompatActivity {
 SqliteDB db;
-List<String> Wbook_title, Wbook_author;
 RecyclerView recycleview;
 CustomAdapter customadapter;
 ArrayList<WishBookModal> WBooks;
@@ -29,6 +26,13 @@ TextView message;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_wish_books);
+
+        ActionBar actionBar;
+        actionBar=getSupportActionBar();
+        ColorDrawable colorDrawable= new ColorDrawable(Color.parseColor("#FF6200EE"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+
+
         String username = getIntent().getStringExtra("Username");
         message=findViewById(R.id.tv_message);
         recycleview = findViewById(R.id.listaId);
@@ -43,47 +47,5 @@ TextView message;
         if(WBooks.size()==0){
             message.setText("You have no books in this list. Please go back to the main page to add one. ");
         }
-
-
-     //-------------------------------------------------------------------
-        /*Wbook_title=new ArrayList<>();
-        Wbook_author=new ArrayList<>();
-        Cursor list = db.viewWishBooks(username);
-        if(list.getCount()==0){
-                Toast.makeText(ViewWishBooks.this, "You don't save any book in this list.", Toast.LENGTH_SHORT).show();
-            }
-            else {
-            while (list.moveToNext()) {
-                Wbook_title.add(list.getString(0));
-                Wbook_author.add(list.getString(1));
-
-            }
-            customadapter= new CustomAdapter(ViewWishBooks.this, Wbook_title,Wbook_author);
-            recycleview.setAdapter(customadapter);
-            recycleview.setLayoutManager(new LinearLayoutManager(ViewWishBooks.this));
-        }*/
-
-    //---------------------------------------------------------------------------------------------------partea de sus merge
-      //  ListView listview = (ListView) findViewById(R.id.listaId);
-     //   db = new SqliteDB(this);
-
-    //    ArrayList<String> mylist = new ArrayList<>();
-
-
-    //    Cursor list = db.viewWishBooks(username);
-   //     if(list.getCount()==0){
-    //        Toast.makeText(ViewWishBooks.this, "You don't save any book in this list.", Toast.LENGTH_SHORT).show();
-    //    }
-    //    else{
-     //       while(list.moveToNext()){
-           //     mylist.add(list.getString(0));
-               // mylist.addAll();
-
-       //         ListAdapter listadapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, mylist);
-       //         listview.setAdapter(listadapter);
-
-
-         //   }
-   //     }
     }
 }

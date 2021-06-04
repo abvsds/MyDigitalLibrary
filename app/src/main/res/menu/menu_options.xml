@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <item android:id="@+id/readbooksBtn"
-    android:title="Your read books">
-
+    android:title="Your Booklist">
 </item>
     <item android:id="@+id/wishlistBtn"
-        android:title="Your Wishlist">
-
+        android:title="Your Wishlist"
+        android:textSize="12dp">
     </item>
     <item android:id="@+id/suggestionsBtn"
-        android:title="Find info about a book">
-
+        android:title="Find a book">
     </item>
     <item android:id="@+id/statisticsBtn"
-        android:title="Statistics">
+        android:title="Statistics"> </item>
+
+    <item android:id="@+id/recomandations"
+        android:title="Recommandations 2021 - Goodreads">
+    </item>
+    <item android:id="@+id/googlemapsLibraries"
+        android:title="View nearby Libraries or Bookstores">
 
     </item>
     <item android:id="@+id/aboutBtn"
-        android:title="About app">
+        android:title="About">
 
     </item>
     <item android:id="@+id/logoutBtn"

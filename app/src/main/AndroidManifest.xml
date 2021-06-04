@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bookmanager">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -13,45 +17,87 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BookManager"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ResetPassword" android:label="Reset new password"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".GoogleMaps"
+            android:label="Map with your current location"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ResetPassword"
+           android:theme="@style/Theme.BookManager.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EditBookReadPage"
-            android:label="Edit book read" />
+            android:label="Edit a book read"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EditWishBooksPage"
-            android:label="Edit Wish Book" />
+            android:label="Edit a wished book"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".StatisticsPage"
-            android:label="Your Statistics" />
-        <activity android:name=".BookDetailsApi" />
+            android:label="Your Statistics"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".BookDetailsApi"
+            android:label="Details about book"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ViewReadBooks"
-            android:label="Read Books List" />
+            android:label="BookList"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ViewWishBooks"
-            android:label="Wish Books List" />
+            android:label="WishList"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AddWishBooksPage"
-            android:label="Adding a wish book" />
+            android:label="Add a book in WishList"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AddReadBooksPage"
-            android:label="Adding a new read book" />
+            android:label="Add a new read book"
+            android:theme="@style/Theme.BookManager"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SearchBooksPage"
-            android:label="Find info about a book" />
+            android:label="Find info about a book"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AboutPage"
-            android:label="About app" />
+            android:label="About app"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".HomePage"
             android:label="Home"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RegisterPage"
-            android:label="Register Form" />
+           android:label="Register Form"
+            android:theme="@style/Theme.BookManager.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginPage"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.BookManager.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

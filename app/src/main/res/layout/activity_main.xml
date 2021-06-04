@@ -1,100 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#E8DAEF"
-    android:padding="10dp"
-    tools:context=".LoginPage">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Welcome to BookManager"
-    android:layout_centerHorizontal="true"
-    android:textSize="25dp"
 
-    android:layout_marginTop="30dp"/>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Sign In"
-    android:textSize="30dp"
-    android:layout_marginTop="100dp"
-    android:layout_centerHorizontal="true"
-    android:textStyle="bold"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/book_pages"
+        android:padding="10dp"
+        tools:context=".LoginPage">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/bowlby_one_sc"
+            android:textColor="@color/black"
+            android:text="My Digital Library"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="170dp"
+            android:fontFamily="@font/aclonica"
+            android:text="Sign In"
+            android:textColor="@color/black"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
     <EditText
         android:id="@+id/usernameId"
-        android:layout_marginTop="180dp"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:ems="10"
+        android:fontFamily="@font/aclonica"
         android:hint="Username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#090000"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#878080"
+        android:textColorLink="#FFFFFF"
+        android:textCursorDrawable="@drawable/cursor"
+        android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/passwordId"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/usernameId"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:drawableStart="@drawable/ic_baseline_lock_open_24"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="#566573"
-        tools:visibility="visible" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="310dp"
+            android:textColorHint="#878080"
+            android:fontFamily="@font/aclonica"
+            app:passwordToggleEnabled="true">
 
-    <Button
-        android:id="@+id/loginId"
-        android:layout_centerHorizontal="true"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/passwordId"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/login_button"
-        android:text="Login"
-        tools:visibility="visible" />
+            <EditText
+                android:id="@+id/passwordId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="350dp"
+                android:drawableStart="@drawable/ic_baseline_lock_open_24"
+                android:ems="10"
+                android:fontFamily="@font/aclonica"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:shadowColor="#3C3434"
+                android:textColor="#090000"
+                android:textColorHighlight="#F6F2F2"
+                android:textColorLink="#BE5AEA"
+                android:textCursorDrawable="@drawable/cursor"
+                android:textSize="20sp"
+                tools:visibility="visible" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/loginId"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="400dp"
+            android:background="@drawable/login_button"
+            android:fontFamily="@font/aclonica"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColorHighlight="#FFFFFF"
+            tools:ignore="NotSibling"
+            tools:visibility="visible" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/clicktoresetpass"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:layout_marginStart="25dp"
-        android:textSize="15dp"
-        android:layout_below="@+id/loginId"
-        android:layout_marginTop="60dp"/>
+        <TextView
+            android:id="@+id/clicktoresetpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loginId"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="casual"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
- <!--   <TextView
-        android:id="@+id/textViewId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginId"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        android:clickable="false"
-        android:text="Not registered? Create an account"
-        android:textColor="#566573"
-        android:textColorLink="@color/purple_700" />-->
 
-    <TextView
-        android:id="@+id/gotoregisterID"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_below="@+id/clicktoresetpass"
-        android:layout_marginStart="20dp"
 
-       android:layout_centerHorizontal="true"
-        android:text="aaaaaaaaa"
-        android:textSize="15dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="12dp"
-         />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/gotoregisterID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/clicktoresetpass"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:fontFamily="casual"
+            android:text="aaaaaaaaa"
+            android:textSize="18dp" />
+    </RelativeLayout>

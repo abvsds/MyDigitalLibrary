@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4E4FA"
     tools:context=".AboutPage">
 
     <TextView
@@ -11,8 +13,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         android:textSize="18sp"
-        android:text="   This app was created for the book lovers in otder to manage more easily their lectures. The users can add their readen book or can save details of a wish book that intent to read. Also, the users have the possibility to find a book and see more details regarding this. Using 'Statistics' button from the menu, the users can see a series of charts in order to reflect their activity. \n \n    The app was developed by Marina Serbanoiu and can be used on devices that have Android 8 or more. \n \n \n \n \n \n \n \n \n \n \n \n \n                                © 2021
-                       " />
+        android:layout_centerHorizontal="true"
+        android:text="   This app was created for book lovers in order to manage more easily their readings. The users can add their read books or can save details of a book that intent to read. Also, the users have the possibility to find a book and see more details regarding this. Using 'Statistics' button from the menu, the users can see a series of charts that reflect their activity. Besides these, the users can view nearby Bookstores or Libraries on Google Maps and some recommandations of books in 2021 from Goodreads.The app can be used on devices that have Android 8 or more." />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:fontFamily="casual"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:text="Copyright © 2021" />
+
 </RelativeLayout>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,43 +8,39 @@
         android:id="@+id/noBooksID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="250dp"
-        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
         android:text="No of books"
+        android:textColor="@color/black"
+        android:fontFamily="casual"
         android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="30dp"
-        android:text="If you want to add another books in the two kind of list, please use the buttons below."
-        android:textSize="18sp"/>
-    <Button
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:text="add a new read book"
-        android:textSize="10dp"
-        android:layout_marginTop="510dp"
-        android:layout_marginLeft="40dp"
-        android:id="@+id/readId"/>
-
-    <TextView
-        android:layout_width="15dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="520dp"
-        android:layout_toRightOf="@+id/readId"
-        android:text="or" />
 
     <Button
-        android:layout_width="120dp"
+        android:layout_width="280dp"
         android:layout_height="50dp"
-        android:text="add a book wish you read"
-        android:textSize="10dp"
+        android:text="Add a new read book"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_from_map"
+        android:fontFamily="@font/aclonica"
+        android:textAllCaps="false"
         android:layout_marginTop="510dp"
-        android:layout_marginLeft="70dp"
-        android:layout_toRightOf="@+id/readId"
+        android:id="@+id/readId"
+        android:textColor="@color/black"/>
+
+
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:text="Add a book wish you read"
+        android:background="@drawable/button_from_map"
+        android:fontFamily="@font/aclonica"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:layout_marginTop="580dp"
         android:id="@+id/wishId"/>
+
 </RelativeLayout>

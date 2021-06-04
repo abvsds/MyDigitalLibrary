@@ -1,27 +1,24 @@
 package com.example.bookmanager;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 
-public class BookFromAPI implements Serializable {
-    private String gTitle;
-   private String gAuthor;
+public class BookFromAPI {
+    private final String gTitle;
+   private final String gAuthor;
 
-    private String gDescription;
-    private String gPreviewLink;
-   private String gCategory;
+    private final String gDescription;
+    private final String gPreviewLink;
+   private final String gCategory;
 
     private int pageCount;
-    private String gInfoLink;
-    private String gpublishDate;
-    private String gThumbnail;
+    private final String gInfoLink;
+    private final String gpublishDate;
+    private final String gThumbnail;
+    private final String username;
 
 
 
-    //getteri
+
 
     public String getgTitle(){
         return gTitle;
@@ -51,8 +48,12 @@ public  String getgThumbnail(){
         return gThumbnail;
 }
 
-//setteri
-public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,int pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink){
+    public String getUsername() {
+        return username;
+    }
+
+
+public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,int pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink, String username){
     this.gTitle=gTitle;
     this.gAuthor=gAuthor;
     this.gpublishDate=gpublishDate;
@@ -61,7 +62,7 @@ public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gD
     this.pageCount=pageCount;
     this.gInfoLink=gInfoLink;
     this.gPreviewLink=gPreviewLink;
-
+    this.username=username;
     this.gThumbnail=gThumbnail;
 }
 }

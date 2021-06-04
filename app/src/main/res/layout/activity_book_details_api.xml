@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="#F4E4FA"
     tools:context=".BookDetailsApi">
 
 
         <LinearLayout
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
- <ImageView
+        <ImageView
                 android:id="@+id/bookCoverId"
                 android:layout_marginTop="8dp"
-                android:layout_width="250dp"
-                android:layout_height="250dp" />
+                android:layout_width="200dp"
+                android:layout_height="230dp" />
 
             <TextView
                 android:id="@+id/titlebookapiId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:fontFamily="casual"
+                android:textSize="25sp"
                 android:text="Title"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
@@ -33,57 +36,87 @@
             <TextView
                 android:id="@+id/authorbookapiId"
                 android:text="Author"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textSize="20sp"
+                android:fontFamily="casual"
                 android:layout_marginTop="8dp" />
 
-         <!--  <View
+          <View
                 android:background="@android:color/darker_gray"
                 android:layout_width="280dp"
                 android:layout_height="1px"
-                android:layout_marginTop="8dp" />-->
-
-      <!--    <TextView
-                android:layout_width="wrap_content"
-                android:id="@+id/pubDateid"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Published date"
-                android:layout_marginRight="@+id/dateIdateid"
-                android:textSize="14sp" />-->
-
-           <TextView
-                android:id="@+id/pageCountId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="200 pages"
-                android:textSize="14sp" />
-           <!--  <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description:"/>
+                android:layout_marginTop="8dp" />
             <TextView
+                android:id="@+id/pubDateid"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/descriptionbookapiId"
-                android:text="blalvlfllflsfdgdhj fxgfhgjhkj fddgfhgjh sdfghj fesrdfgh sdkiuytrew dfdgf"/>
+                android:layout_height="19dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:fontFamily="casual"
+                android:text="Published date"
+                android:textSize="14sp"/>
+            <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/categoryid"
+                android:fontFamily="casual"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"/>
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="more info"
-                android:id="@+id/infoLinkId"/>
+           <!--        <TextView
+                         android:id="@+id/pageCountId"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="8dp"
+                         android:text="200 pages"
+                         android:textSize="14sp" /> -->
+                      <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Description:"
+                          android:textColor="@color/black"
+                          android:fontFamily="casual"
+                          android:layout_marginTop="20dp"/>
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="10dp"
+                         android:fontFamily="casual"
+                         android:textColor="@color/black"
+                         android:layout_centerHorizontal="true"
+                         android:id="@+id/descriptionbookapiId"
+                         android:text="description of the book"/>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp">
+                    <Button
+                         android:layout_width="170dp"
+                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                         android:text="View more info"
+                        android:background="@drawable/button_from_map"
+                        android:fontFamily="@font/aclonica"
+                        android:textColor="@color/black"
+                        android:textAllCaps="false"
+                         android:id="@+id/infoLinkId"/>
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/previewLinkId"
-                android:text="View preview"/>-->
-
+                     <Button
+                         android:layout_width="170dp"
+                         android:layout_height="wrap_content"
+                         android:id="@+id/previewLinkId"
+                         android:background="@drawable/button_from_map"
+                         android:textColor="@color/black"
+                         android:fontFamily="@font/aclonica"
+                         android:textAllCaps="false"
+                         android:layout_marginStart="200dp"
+                         android:text="View preview"/>
+        </RelativeLayout>
         </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

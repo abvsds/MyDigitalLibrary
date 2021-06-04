@@ -1,72 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/book_pages"
     tools:context=".RegisterPage">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Register Form"
+        android:textColor="@color/black"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold" />
     <EditText
         android:id="@+id/r_nameId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:ems="12"
+        android:fontFamily="@font/aclonica"
         android:hint="Name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="#878080"
+        android:textCursorDrawable="@drawable/cursor" />
 
     <EditText
         android:id="@+id/r_usernameId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:ems="12"
+        android:textColor="@color/black"
         android:hint="Username"
-        android:layout_marginTop="150dp"
-        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/aclonica"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="311dp" />
-
-    <EditText
-        android:id="@+id/r_passwordId"
+        android:textColorHint="#878080"
+        android:textCursorDrawable="@drawable/cursor" />
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:inputType="textPassword"
-        app:layout_constraintVertical_bias="0.268" />
+        app:passwordToggleEnabled="true"
+        android:textColorHint="#878080"
+        android:layout_marginTop="260dp"
+        android:layout_centerHorizontal="true">
 
-    <EditText
-        android:id="@+id/repasswordId"
+        <EditText
+            android:id="@+id/r_passwordId"
+            android:fontFamily="@font/aclonica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ems="12"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="#878080"
+            android:textCursorDrawable="@drawable/cursor"
+            tools:visibility="visible" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Confirm the password"
-        android:layout_marginTop="250dp"
-        android:layout_centerHorizontal="true"
-        android:inputType="textPassword"
-        />
+        app:passwordToggleEnabled="true"
+        android:layout_marginTop="310dp"
+        android:textColorHint="#878080"
+        android:layout_centerHorizontal="true">
 
+        <EditText
+            android:id="@+id/repasswordId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ems="12"
+            android:fontFamily="@font/aclonica"
+            android:textColor="@color/black"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@drawable/cursor" />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/r_buttonId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:text="Register"
-        android:layout_marginTop="320dp"
+        android:background="@drawable/login_button"
+        android:fontFamily="@font/aclonica"
+        android:textAllCaps="false"
+        android:layout_marginTop="420dp"
         android:layout_centerHorizontal="true"
          />
 
     <TextView
         android:id="@+id/backtoLoginId"
-        android:layout_width="355dp"
-        android:layout_height="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Go to Login Page if you already have an account"
-        android:layout_marginTop="400dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="520dp"
+        android:textColor="@color/white"
+        android:layout_marginStart="20dp"
         android:layout_centerHorizontal="true"
+        android:fontFamily="casual"
+        android:textSize="18dp"
         />
 
 

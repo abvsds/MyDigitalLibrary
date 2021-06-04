@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F4E4FA"
     tools:context=".AddWishBooksPage">
 
     <TextView
@@ -11,6 +13,8 @@
         android:layout_width="70dp"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="30dp"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="Title" />
 
@@ -18,16 +22,19 @@
         android:id="@+id/inputTitle2id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
+        android:textCursorDrawable="@drawable/cursor"
+        android:textColor="@color/black"
         android:layout_marginLeft="-1dp"
         android:layout_toRightOf="@+id/title2id"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:ems="10" />
     <TextView
         android:id="@+id/author2id"
         android:layout_width="70dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         android:layout_below="@+id/title2id"
         android:layout_height="wrap_content"
         android:text="Author" />
@@ -37,10 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:textColor="@color/black"
         android:layout_marginLeft="-1dp"
+        android:textCursorDrawable="@drawable/cursor"
         android:layout_toRightOf="@+id/author2id"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:ems="10" />
 
     <Button
         android:layout_width="170dp"
@@ -50,5 +58,10 @@
         android:layout_marginLeft="130dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Save the book"/>
+        android:background="@drawable/button_from_map"
+        android:textColor="@color/black"
+        android:fontFamily="@font/aclonica"
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"
+        android:text="Save book"/>
 </RelativeLayout>

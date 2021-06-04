@@ -7,18 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HomePage"
-    android:id="@+id/drawerId"
-    >
+    android:background="#F4E4FA"
+    android:id="@+id/drawerId">
 
-
- <!--<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#E8DAEF"
-    tools:context=".HomePage"> -->
 
     <include android:layout_height="wrap_content"
     android:layout_width="match_parent"
@@ -32,15 +23,16 @@
         android:id="@+id/welcomeId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-
+        android:fontFamily="@font/aclonica"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="150dp"
         android:textSize="30dp"
         android:text="welcome user"
-        android:textColor="#FFFFFF" />
+        android:textColor="@color/black" />
 
 
-<!--</RelativeLayout> -->
+
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,4 +47,5 @@
 
 
    </androidx.drawerlayout.widget.DrawerLayout>
+
 

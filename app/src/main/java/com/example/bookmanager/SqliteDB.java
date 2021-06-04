@@ -5,20 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import com.github.mikephil.charting.data.PieEntry;
+
+
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class SqliteDB extends SQLiteOpenHelper {
     public static final String DBNAME ="LoginUsers.db";
@@ -31,8 +27,10 @@ public class SqliteDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDatabase) {
 MyDatabase.execSQL("create Table Users(username Text primary key, password text)");
-MyDatabase.execSQL("create Table ReadBook(idBook Integer primary key autoincrement, title text, author text, description text, notes text, impressions text, time_period text, date datetime default current_date, username text, foreign key (username) references Users(username))");
-MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoincrement, titleWishBook  text, authorWishBook text, username text, foreign key(username) references Users(username))");
+MyDatabase.execSQL("create Table ReadBook(idBook Integer primary key autoincrement, title text, author text, description text, notes text, " +
+        "impressions text, time_period text, date datetime default current_date, username text, foreign key (username) references Users(username))");
+MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoincrement, titleWishBook  text, authorWishBook text, username text, " +
+        "foreign key(username) references Users(username))");
     }
 
     @Override
@@ -50,7 +48,7 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
 
     }
 
-    public Boolean insertData(String username, String password){
+    public boolean insertData(String username, String password){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put("username", username);
@@ -64,7 +62,7 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
     }
 
 
-    public Boolean updatePass(String username, String password){
+    public boolean updatePass(String username, String password){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put("username", username);
@@ -86,21 +84,30 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
         contentValues.put("notes", notes);
         contentValues.put("impressions", impressions);
         contentValues.put("time_period", period);
-    //  contentValues.put("date", String.valueOf(date));
         contentValues.put("username", username);
         long result = MyDatabase.insert ("ReadBook", null, contentValues);
         if(result==-1)
             return false;
         else
             return true;
+    }
+    public ArrayList<WishBookModal> ViewWishBook(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select titleWishBook, authorWishBook from WishBook where username = ?", new String[]{username});
+        ArrayList<WishBookModal> WishBookList = new ArrayList<>();
 
+        if (cursor.moveToFirst()) {
+            do {
+                WishBookList.add(new WishBookModal(cursor.getString(0), cursor.getString(1), username));
+            } while (cursor.moveToNext());
+        }
+        else if(cursor.getCount()==0){
 
-        // result = MyDatabase.execSQL("insert into ReadBook (title, author, description, notes, impressions, period, date, username) values(title, author, description, notes, impressions, period, datetime('now'), username)");
+        }
+        cursor.close();
+        return WishBookList;
     }
 
-
-
-    // insert into WishBooks
     public boolean insertWishBook( String title, String author,String username){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
@@ -114,28 +121,22 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
         else
             return true;
     }
-
-    public ArrayList<WishBookModal> ViewWishBook(String username) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select titleWishBook, authorWishBook from WishBook where username = ?", new String[]{username});
-        ArrayList<WishBookModal> WishBookList = new ArrayList<>();
-
-        if (cursor.moveToFirst()) {
-            do {
-                WishBookList.add(new WishBookModal(cursor.getString(0), cursor.getString(1)));
-            } while (cursor.moveToNext());
-        }
-        else if(cursor.getCount()==0){
-
-        }
-        cursor.close();
-        return WishBookList;
+    public void UpdateReadBook(String orig_title,  String title, String author, String description, String notes, String impression, String duration, String username ){
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        ContentValues contentValues= new ContentValues();
+        contentValues.put("username", username);
+        contentValues.put("title", title);
+        contentValues.put("author", author);
+        contentValues.put("description", description);
+        contentValues.put("notes", notes);
+        contentValues.put("impressions", impression);
+        contentValues.put("time_period", duration);
+        MyDatabase.update("ReadBook", contentValues, "title= ? and username=?",  new String[]{orig_title, username});
     }
+    public void DeleteWishBook(String title, String username){
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.delete("WishBook", "titleWishBook=? and username=?", new String[]{title, username});
 
-    public String format_date(Date date){
-
-        String format=  new SimpleDateFormat("yyyy, month dd").format(date);
-        return format;
     }
     public ArrayList<BookReadModal> ViewReadBook(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -145,7 +146,7 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
 
         if (cursor.moveToFirst()) {
             do {
-                ReadBookList.add(new BookReadModal(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),cursor.getString(6)));
+                ReadBookList.add(new BookReadModal(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),cursor.getString(6), username));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -172,27 +173,6 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
             return false;
     }
 
- public Cursor viewWishBooks(String username){
-     SQLiteDatabase MyDatabase = this.getWritableDatabase();
-     Cursor wishBooks = MyDatabase.rawQuery("select titleWishBook, authorWishBook from WishBook where username =?", new String[] {username});
-     return wishBooks;
- }
-public String FormatData(Date date){
-    SimpleDateFormat format = new SimpleDateFormat("MM DD, YY");
-    String currentDate = format.format(date);
-    return currentDate;
-}
- public Cursor viewReadBooks(String username){
-        SQLiteDatabase MyDatabase = this.getWritableDatabase();
-        Cursor wishBooks = MyDatabase.rawQuery("select title, author,description, notes, impressions, time_period,  date from ReadBook where username =?", new String[] {username});
-        return wishBooks;
-    }
-
-
-
-
-
-
     public int countReadBooks(String username){
         int count=0;
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
@@ -203,6 +183,22 @@ public String FormatData(Date date){
         }
         return count;
     }
+
+    public ArrayList<BarEntry> getBarEntries(String username) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor csr = db.rawQuery("select count(date) as books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+        ArrayList<BarEntry> data_bar_chart = new ArrayList<>();
+        while (csr.moveToNext()) {
+            data_bar_chart.add(new BarEntry(
+                    csr.getInt(csr.getColumnIndex("month")),
+                    csr.getInt(csr.getColumnIndex("books_number"))
+            ));
+        }
+        csr.close();
+        return data_bar_chart;
+    }
+
     public int countWishBooks(String username){
         int count=0;
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
@@ -215,69 +211,55 @@ public String FormatData(Date date){
         return count;
     }
 
-    //editare wish book
-    public void UpdateWishBook(String orig_title,  String title, String author ){
+    public boolean UpdateWishBook( String orig_title, String title, String author, String username ){
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
+        contentValues.put("username", username);
         contentValues.put("titleWishBook", title);
         contentValues.put("authorWishBook", author);
-        MyDatabase.update("WishBook", contentValues, "titleWishBook= ?",  new String[]{orig_title});
-
-       //MyDatabase.close();
+        long result= MyDatabase.update("WishBook", contentValues, " titleWishBook =? and username=?",  new String[]{ orig_title, username});
+        if(result==-1)
+            return false;
+        else
+            return true;
     }
-    public void DeleteWishBook(String title){
+
+
+
+
+    public void DeleteReadBook(String title, String username){
         SQLiteDatabase db= this.getWritableDatabase();
-        db.delete("WishBook", "titleWishBook=?", new String[]{title});
+        db.delete("ReadBook", "title=? and username=?", new String[]{title, username});
 
     }
 
-    public void UpdateReadBook(String orig_title,  String title, String author, String description, String notes, String impression, String duration ){
-        SQLiteDatabase MyDatabase = this.getWritableDatabase();
-        ContentValues contentValues= new ContentValues();
-        contentValues.put("title", title);
-        contentValues.put("author", author);
-        contentValues.put("description", description);
-        contentValues.put("notes", notes);
-        contentValues.put("impressions", impression);
-        contentValues.put("time_period", duration);
-        MyDatabase.update("ReadBook", contentValues, "title= ?",  new String[]{orig_title});
 
-        //MyDatabase.close();
-    }
 
-    public void DeleteReadBook(String title){
-        SQLiteDatabase db= this.getWritableDatabase();
-        db.delete("ReadBook", "title=?", new String[]{title});
-
-    }
-
-    public ArrayList<BarEntry> getBarEntries(String username) {
-      //  String income_sum_column = "income_sum";
+    public ArrayList<BarEntry> getBarEntries_noPages(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-     //   String[] columns = new String[]{"SUM(income) AS " + income_sum_column, "income_category"};
-        Cursor csr = db.rawQuery("select count(date) as books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
-        ArrayList<BarEntry> data_bar_chart = new ArrayList<>();
-        while (csr.moveToNext()) {
-            data_bar_chart.add(new BarEntry(
-                    csr.getInt(csr.getColumnIndex("month")),
-                    csr.getInt(csr.getColumnIndex("books_number"))
+        Cursor csr1 = db.rawQuery("select sum(time_period) as total_days, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+        ArrayList<BarEntry> data_bar_chart1 = new ArrayList<>();
+        while (csr1.moveToNext()) {
+            data_bar_chart1.add(new BarEntry(
+                    csr1.getFloat(csr1.getColumnIndex("month")),
+                    csr1.getFloat(csr1.getColumnIndex("total_days"))
             ));
         }
-        csr.close();
-        return data_bar_chart;
+        csr1.close();
+        return data_bar_chart1;
     }
-//        Cursor csr = db.rawQuery("select round(1.0*100*count(date)/(select count(*) from ReadBook where username=?), 2) as percent_books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+
     public ArrayList<PieEntry> getPieEntries(String username) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        //   String[] columns = new String[]{"SUM(income) AS " + income_sum_column, "income_category"};
-    Cursor csr = db.rawQuery("select round(1.0*100*count(date)/(select count(*) from ReadBook where username=?), 2) as percent_books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
+    Cursor csr = db.rawQuery("select round(1.0*100*count(date)/(select count(*) from ReadBook where username=?), 2) as" +
+            " percent_books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
         ArrayList<PieEntry> data_pie_chart = new ArrayList<>();
 
 
-        while (csr.moveToFirst()) {
+        while (csr.moveToNext()) {
             String month = csr.getString(1);
-            float percentage = csr.getFloat(2);
+            float percentage = csr.getFloat(0);
             data_pie_chart.add(new PieEntry(percentage, month));
         }
 

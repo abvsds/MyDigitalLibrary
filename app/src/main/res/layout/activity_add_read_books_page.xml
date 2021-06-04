@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4E4FA"
     tools:context=".AddReadBooksPage">
 
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp">
     <TextView
         android:id="@+id/title1id"
         android:layout_width="70dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         android:text="Title" />
 
     <EditText
@@ -20,16 +31,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_toRightOf="@+id/title1id"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:textColor="@color/black"
+        android:textCursorDrawable="@drawable/cursor"
+        android:ems="10"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/author1id"
         android:layout_width="70dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/title1id"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="Author" />
 
@@ -37,18 +52,22 @@
         android:id="@+id/inputauthor1id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_toRightOf="@+id/author1id"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textCursorDrawable="@drawable/cursor"
         android:ems="10"
-        android:inputType="textPersonName" />
-
+        />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/description1id"
         android:layout_width="100dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/author1id"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="Description" />
 
@@ -56,17 +75,22 @@
         android:id="@+id/inputdescription1id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="105dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_toRightOf="@+id/description1id"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
         android:ems="10"
+        android:textCursorDrawable="@drawable/cursor"
         android:inputType="textMultiLine" />
-
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/notes1id"
         android:layout_width="100dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="casual"
         android:layout_below="@+id/description1id"
         android:layout_height="wrap_content"
         android:text="Notes" />
@@ -75,17 +99,21 @@
         android:id="@+id/inputnotes1id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="155dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_toRightOf="@+id/notes1id"
+        android:layout_marginTop="10dp"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:textColor="@color/black"
+        android:textCursorDrawable="@drawable/cursor"
+        android:inputType="textMultiLine" /></LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_height="75dp">
     <TextView
         android:id="@+id/impresions1id"
         android:layout_width="130dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/notes1id"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
         android:layout_height="wrap_content"
         android:text="Impressions (Did you like this book?)" />
 
@@ -93,42 +121,49 @@
         android:id="@+id/inputimpressions1id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_toRightOf="@+id/impresions1id"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textCursorDrawable="@drawable/cursor"
         android:ems="10"
-        android:inputType="textPersonName" />
-
+        android:inputType="textMultiLine" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_height="75dp">
     <TextView
         android:id="@+id/time1id"
-        android:layout_width="130dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/impresions1id"
+        android:layout_width="150dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="casual"
         android:layout_height="wrap_content"
-        android:text="How long did you read the book?" />
+        android:text="How long did you read the book? (in days)" />
 
     <EditText
         android:id="@+id/inputtime1id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_toRightOf="@+id/time1id"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textCursorDrawable="@drawable/cursor"
         android:ems="10"
-        android:inputType="textPersonName" />
-
+        android:inputType="number"
+        />
+</LinearLayout>
     <Button
         android:layout_width="170dp"
         android:id="@+id/savebookBtn1id"
         android:layout_height="50dp"
-        android:layout_below="@+id/time1id"
-        android:layout_marginLeft="130dp"
+        android:background="@drawable/button_from_map"
+        android:fontFamily="@font/aclonica"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Save the book"/>
+        android:text="Save book"/>
 
 
 
-
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>

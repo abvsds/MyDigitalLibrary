@@ -1,8 +1,11 @@
 package com.example.bookmanager;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,7 +17,7 @@ public class EditWishBooksPage extends AppCompatActivity {
  private EditText WTitleEdit, WAuthorEdit;
  private Button updateWishBook;
  private SqliteDB db;
- String titleE, authorE;
+ String titleE, authorE, username;
 
 
     @Override
@@ -22,34 +25,47 @@ public class EditWishBooksPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_wish_books_page);
 
+
+        ActionBar actionBar;
+        actionBar=getSupportActionBar();
+        ColorDrawable colorDrawable= new ColorDrawable(Color.parseColor("#FF6200EE"));
+        actionBar.setBackgroundDrawable(colorDrawable);
+
+
         WTitleEdit= findViewById(R.id.EinputTitle2id);
         WAuthorEdit=findViewById(R.id.Einputauthor2id);
-       // String username = getIntent().getStringExtra("Username");
+
         db= new SqliteDB(EditWishBooksPage.this);
 
-
+        username = getIntent().getStringExtra("username");
         titleE=getIntent().getStringExtra("title");
         authorE=getIntent().getStringExtra("author");
 
-        WTitleEdit.setText(titleE);
-        WAuthorEdit.setText(authorE);
+       WTitleEdit.setText(titleE);
+       WAuthorEdit.setText(authorE);
         updateWishBook=findViewById(R.id.editbookBtn2id);
         updateWishBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.UpdateWishBook(titleE,  WTitleEdit.getText().toString(), WAuthorEdit.getText().toString() );
-                Toast.makeText(getBaseContext(),"The book was updated.",Toast.LENGTH_SHORT).show();
-                Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent i = new Intent (EditWishBooksPage.this, ViewWishBooks.class);
-                        startActivity(i);
+
+                if (WTitleEdit.getText().toString().equals(" ") || WAuthorEdit.getText().toString().equals("")){
+                    Toast.makeText(EditWishBooksPage.this, " You need to complete the both fields.", Toast.LENGTH_SHORT).show();
+            }
+                else {
+                    boolean editWBook = db.UpdateWishBook( titleE, WTitleEdit.getText().toString(), WAuthorEdit.getText().toString(), username);
+                    if(editWBook==true) {
+                        Toast.makeText(getBaseContext(), "The book was updated.", Toast.LENGTH_SHORT).show();
+                        Runnable r = new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent i = new Intent(EditWishBooksPage.this, ViewWishBooks.class);
+                                startActivity(i);
+                            }
+                        };
+                        Handler handler = new Handler();
+                        handler.postDelayed(r, 1000);
                     }
-                };
-                Handler handler = new Handler();
-                handler.postDelayed(r, 1000);
-
-
+                }
 
             }
         });

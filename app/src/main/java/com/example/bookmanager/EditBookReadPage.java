@@ -1,8 +1,11 @@
 package com.example.bookmanager;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,7 +17,7 @@ public class EditBookReadPage extends AppCompatActivity {
     private EditText RTitleEdit, RAuthorEdit, RdescEdit, RnotesEdit, RimpressionEdit, RdurationEdit;
     private Button updateReadBook;
     private SqliteDB db;
-    String titleE, authorE, descE, notesE, ImpressionE, durationE;
+    String titleE, authorE, descE, notesE, ImpressionE, durationE, usernameE;
 
 
 
@@ -22,6 +25,12 @@ public class EditBookReadPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book_read_page);
+
+
+        ActionBar actionBar;
+        actionBar=getSupportActionBar();
+        ColorDrawable colorDrawable= new ColorDrawable(Color.parseColor("#FF6200EE"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         RTitleEdit=findViewById(R.id.EinputTitle1id);
         RAuthorEdit=findViewById(R.id.Einputauthor1id);
@@ -39,6 +48,7 @@ public class EditBookReadPage extends AppCompatActivity {
         notesE=getIntent().getStringExtra("notes");
         ImpressionE=getIntent().getStringExtra("impression");
         durationE=getIntent().getStringExtra("duration");
+        usernameE=getIntent().getStringExtra("username");
 
         RTitleEdit.setText(titleE);
         RAuthorEdit.setText(authorE);
@@ -51,7 +61,7 @@ public class EditBookReadPage extends AppCompatActivity {
         updateReadBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.UpdateReadBook(titleE,  RTitleEdit.getText().toString(), RAuthorEdit.getText().toString() , RdescEdit.getText().toString(), RnotesEdit.getText().toString() ,RimpressionEdit.getText().toString(), RdurationEdit.getText().toString() );
+                db.UpdateReadBook(titleE,  RTitleEdit.getText().toString(), RAuthorEdit.getText().toString() , RdescEdit.getText().toString(), RnotesEdit.getText().toString() ,RimpressionEdit.getText().toString(), RdurationEdit.getText().toString() , usernameE);
                 Toast.makeText(getBaseContext(),"The book was updated.",Toast.LENGTH_SHORT).show();
                 Runnable r = new Runnable() {
                     @Override

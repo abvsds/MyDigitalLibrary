@@ -1,6 +1,5 @@
 package com.example.bookmanager;
 
-import java.util.Date;
 
 public class BookReadModal {
     private String r_title;
@@ -10,6 +9,11 @@ public class BookReadModal {
     private String r_impression;
     private String r_duration;
     private String date;
+    private String r_username;
+
+    public String getR_username() {
+        return r_username;
+    }
 
     public String getR_title() {
         return r_title;
@@ -64,7 +68,8 @@ public String getDate(){
 public void setDate(String date){
         this.date=date;
 }
-    BookReadModal(String r_title, String r_author, String r_desc, String r_notes, String r_impression, String r_duration, String date){
+
+    BookReadModal(String r_title, String r_author, String r_desc, String r_notes, String r_impression, String r_duration, String date, String r_username){
         this.r_title=r_title;
         this.r_author=r_author;
         this.r_desc=r_desc;
@@ -72,6 +77,7 @@ public void setDate(String date){
         this.r_impression=r_impression;
         this.r_duration=r_duration;
         this.date=date;
+        this.r_username=r_username;
 
     }
 }

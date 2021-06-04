@@ -33,9 +33,10 @@ public class WishBookModal {
         this.w_username = w_username;
     }
 
-    public WishBookModal(String w_title, String w_author){
+    public WishBookModal(String w_title, String w_author, String w_username){
         this.w_title=w_title;
         this.w_author=w_author;
+        this.w_username=w_username;
 
     }
 }

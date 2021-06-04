@@ -2,15 +2,17 @@ package com.example.bookmanager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +55,31 @@ public class LoginPage extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(LoginPage.this, "Invalid password! ", Toast.LENGTH_SHORT).show();
-                }
+
+                    resetPass=findViewById(R.id.clicktoresetpass);
+                    SpannableString clicktoreset= new SpannableString("Forgot your password? Please click here to reset a new password.");
+                    ClickableSpan clickable = new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            String user = username.getText().toString();
+                            Intent i= new Intent(LoginPage.this, ResetPassword.class);
+                            i.putExtra("Username", user);
+                            startActivity(i);
+
+
+                        }
+
+                        @Override
+                        public void updateDrawState(@NonNull TextPaint ds) {
+                            super.updateDrawState(ds);
+                            ds.setUnderlineText(true);
+                        }
+                    };
+                    clicktoreset.setSpan(clickable, 29, 39, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
+                    ForegroundColorSpan foregroundColorSpan= new ForegroundColorSpan(Color.MAGENTA);
+                    clicktoreset.setSpan(foregroundColorSpan, 29, 39, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                    resetPass.setText(clicktoreset);
+                    resetPass.setMovementMethod(LinkMovementMethod.getInstance());}
                 }
             }
         });
@@ -70,28 +96,7 @@ goTo_register.setOnClickListener(new View.OnClickListener() {
 });
 
 
-resetPass=findViewById(R.id.clicktoresetpass);
-        SpannableString clicktoreset= new SpannableString("Forgot your password? Please click here to reset a new password.");
-        ClickableSpan clickable = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                String user = username.getText().toString();
-              Intent i= new Intent(LoginPage.this, ResetPassword.class);
-              i.putExtra("Username", user);
-              startActivity(i);
 
-
-            }
-
-            @Override
-            public void updateDrawState(@NonNull TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setUnderlineText(true);
-            }
-        };
-        clicktoreset.setSpan(clickable, 29, 39, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
-        resetPass.setText(clicktoreset);
-       resetPass.setMovementMethod(LinkMovementMethod.getInstance());
 
         register= findViewById(R.id.gotoregisterID);
         SpannableString clicktoregister= new SpannableString("Not registered? Create an account here");
@@ -108,6 +113,8 @@ resetPass=findViewById(R.id.clicktoresetpass);
             }
         };
         clicktoregister.setSpan(clickable1, 34, 38, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
+        ForegroundColorSpan foregroundColorSpan= new ForegroundColorSpan(Color.MAGENTA);
+        clicktoregister.setSpan(foregroundColorSpan, 34, 38, Spanned.SPAN_INCLUSIVE_INCLUSIVE );
         register.setText(clicktoregister);
         register.setMovementMethod(LinkMovementMethod.getInstance());
     }
