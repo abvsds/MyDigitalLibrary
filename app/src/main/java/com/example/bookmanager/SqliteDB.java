@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.github.mikephil.charting.data.BarEntry;
 
-import com.github.mikephil.charting.data.PieEntry;
 
 
 
@@ -233,8 +232,6 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
 
     }
 
-
-
     public ArrayList<BarEntry> getBarEntries_noPages(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor csr1 = db.rawQuery("select sum(time_period) as total_days, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
@@ -249,21 +246,5 @@ MyDatabase.execSQL("create Table WishBook(idWishBook  Integer primary key autoin
         return data_bar_chart1;
     }
 
-    public ArrayList<PieEntry> getPieEntries(String username) {
 
-        SQLiteDatabase db = this.getReadableDatabase();
-    Cursor csr = db.rawQuery("select round(1.0*100*count(date)/(select count(*) from ReadBook where username=?), 2) as" +
-            " percent_books_number, strftime('%m', date) as month  from ReadBook where username =? group by  month", new String[] {username});
-        ArrayList<PieEntry> data_pie_chart = new ArrayList<>();
-
-
-        while (csr.moveToNext()) {
-            String month = csr.getString(1);
-            float percentage = csr.getFloat(0);
-            data_pie_chart.add(new PieEntry(percentage, month));
-        }
-
-        csr.close();
-        return data_pie_chart;
-    }
     }

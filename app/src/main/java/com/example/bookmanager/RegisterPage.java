@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 public class RegisterPage extends AppCompatActivity {
 EditText name, username_registration, password_registration, repassword;
 Button signup;
-TextView signin, backtologin;
+TextView  backtologin;
 SqliteDB DB;
 
     private static final Pattern PASSWORD_PATTERN1 =
@@ -45,7 +45,6 @@ SqliteDB DB;
         password_registration = (EditText) findViewById(R.id.r_passwordId);
         repassword = (EditText) findViewById(R.id.repasswordId);
         signup = (Button) findViewById(R.id.r_buttonId);
-        signin = findViewById(R.id.backtoLoginId);
         DB =  new SqliteDB(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -98,12 +97,7 @@ else {
 
         });
 
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backtoLoginPage();
-            }
-        });
+
 backtologin=findViewById(R.id.backtoLoginId);
         SpannableString backLogin= new SpannableString("If you already have an account, please go to login page.");
         ClickableSpan clickable2 = new ClickableSpan() {
@@ -124,8 +118,5 @@ backtologin=findViewById(R.id.backtoLoginId);
         backtologin.setText(backLogin);
         backtologin.setMovementMethod(LinkMovementMethod.getInstance());
     }
-    public void backtoLoginPage(){
-        Intent intent = new Intent(this, LoginPage.class);
-        startActivity(intent);
-    }
+
 }

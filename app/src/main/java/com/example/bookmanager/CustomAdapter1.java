@@ -41,15 +41,10 @@ public class CustomAdapter1 extends RecyclerView.Adapter<CustomAdapter1.Display>
     public void onBindViewHolder(@NonNull Display holder, int position) {
         BookReadModal modal = RBookList.get(position);
 holder.Rbook_title_txt.setText(modal.getR_title() +", "+ modal.getR_author());
-//holder.Rbook_author_txt.setText(modal.getR_author());
         holder.description_txt.setText("\n \n Description: "+ modal.getR_desc() +"\n Notes: "+
                 modal.getR_notes() +"\n Impresssion: "+modal.getR_impression()
         +"\n Time period needed to read this (Days): "+modal.getR_duration());
-    //    holder.notes_txt.setText("Notes: "+modal.getR_notes());
-     //   holder.impressions_txt.setText("Impresssion: "+modal.getR_impression());
-     //   holder.time_txt.setText("Time (Days): "+modal.getR_duration());
-     //   SimpleDateFormat formatter = new SimpleDateFormat("Month DD, YYYY");
-     // ArrayList date1= formatter.format(Date.parse(date.toString()));
+
         holder.date_txt.setText(modal.getDate());
         holder.Options_txt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,15 +115,11 @@ holder.Rbook_title_txt.setText(modal.getR_title() +", "+ modal.getR_author());
     }
 
     public class Display extends RecyclerView.ViewHolder {
-        TextView Rbook_title_txt, Rbook_author_txt, description_txt, notes_txt, impressions_txt, time_txt, date_txt, Options_txt;
+        TextView Rbook_title_txt, description_txt, date_txt, Options_txt;
         public Display(View itemView) {
             super(itemView);
             Rbook_title_txt= itemView.findViewById(R.id.book_titleID1);
-         //  Rbook_author_txt= itemView.findViewById(R.id.book_authorID1);
             description_txt = itemView.findViewById(R.id.descrip);
-        //    notes_txt = itemView.findViewById(R.id.notes);
-         //   impressions_txt=itemView.findViewById(R.id.impression);
-         //   time_txt=itemView.findViewById(R.id.timeperiod);
             date_txt=itemView.findViewById(R.id.date);
             Options_txt=itemView.findViewById(R.id.ReadBookOptions);
         }

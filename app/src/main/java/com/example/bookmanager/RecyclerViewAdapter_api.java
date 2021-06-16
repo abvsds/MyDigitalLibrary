@@ -24,8 +24,9 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAdapter_api.MyView> {
     private Context context;
     private ArrayList<BookFromAPI> GBooks;
+
     SqliteDB db;
-    public RecyclerViewAdapter_api( ArrayList<BookFromAPI> GBooks, Context context){
+    public RecyclerViewAdapter_api( ArrayList<BookFromAPI> GBooks,Context context){
         this.context=context;
         this.GBooks=GBooks;
 
@@ -41,6 +42,7 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
     public void onBindViewHolder(@NonNull MyView holder, int pos) {
         BookFromAPI book = GBooks.get(pos);
 
+
         holder.tvTitle.setText(book.getgTitle());
         holder.tvAuthor.setText(book.getgAuthor());
         holder.tvCategory.setText( book.getgCategory());
@@ -49,7 +51,12 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
         holder.tvpubDate.setVisibility(View.GONE);
         holder.tvdescription.setText(book.getgDescription());
         holder.tvdescription.setVisibility(View.GONE);
-        //holder.tvnoPages.setText(book.getPageCount());
+        holder.tvnoPages.setText(book.getPageCount());
+        holder.tvnoPages.setVisibility(View.GONE);
+
+
+
+
 
         holder.tvInfolink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +70,7 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
                 context.startActivity(i);
             }
         });
+
      holder.tvInfolink.setVisibility(View.GONE);
         holder.tvPreviewLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,11 +97,11 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
                 intent.putExtra("author", book.getgAuthor());
                 intent.putExtra("publishedDate", book.getGpublishDate());
                 intent.putExtra("description", book.getgDescription());
-              //  intent.putExtra("pageCount", book.getPageCount());
+                intent.putExtra("pageCount", book.getPageCount());
                 intent.putExtra("category", book.getgCategory());
                 intent.putExtra("thumbnail", book.getgThumbnail());
-             intent.putExtra("previewLink", book.getgPreviewLink());
-             intent.putExtra("infoLink", book.getgInfoLink());
+                intent.putExtra("previewLink", book.getgPreviewLink());
+                intent.putExtra("infoLink", book.getgInfoLink());
                 context.startActivity(intent);
             }
         });
@@ -104,15 +112,17 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
 
               db = new SqliteDB(context);
               boolean insertation = db.insertWishBook(book.getgTitle(), book.getgAuthor(), book.getUsername());
-              if (insertation == true) {
+              if (insertation) {
                   Toast.makeText(context, " The book was added successful in WishList", Toast.LENGTH_SHORT).show();
                  holder.addtoWishlist.setVisibility(View.GONE);
                   holder.check_mark.setVisibility(View.VISIBLE);
-
-
               }
+
+
           }
       });
+
+
     }
 
     @Override
@@ -136,7 +146,7 @@ public class RecyclerViewAdapter_api extends RecyclerView.Adapter<RecyclerViewAd
             tvCategory=itemView.findViewById(R.id.category);
             tvpubDate=itemView.findViewById(R.id.pubDateidd);
             tvdescription=itemView.findViewById(R.id.descriptionbookapiIdd);
-           // tvnoPages=itemView.findViewById(R.id.pageCountIdd);
+            tvnoPages=itemView.findViewById(R.id.pageCountIdd);
             image = itemView.findViewById(R.id.thumbnailLink);
             tvInfolink=itemView.findViewById(R.id.infoLinkIdd);
             tvPreviewLink=itemView.findViewById(R.id.previewLinkIdd);

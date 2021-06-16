@@ -123,22 +123,6 @@ Button add1, add2;
 
 nav_view.setBackgroundColor(Color.TRANSPARENT);
 
-
-
-
-
-    //    logout = (Button)findViewById(R.id.logoutId);
-     //   logout.setOnClickListener(new View.OnClickListener() {
-      //      @Override
-      //      public void onClick(View v) {
-      //          Intent intent = new Intent(getApplicationContext(), LoginPage.class);
-      //          intent.putExtra("finish", true);
-     //           intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-     //           startActivity(intent);
-     //           finish();
-     //       }
-
-    //    });
 add1= findViewById(R.id.readId);
 add2= findViewById(R.id.wishId);
 add1.setOnClickListener(new View.OnClickListener() {
@@ -161,28 +145,7 @@ add1.setOnClickListener(new View.OnClickListener() {
 
 
 }
-  //  @Override
-  //  public boolean onCreateOptionsMenu(Menu menu){
-  //      MenuInflater inflater = getMenuInflater();
-   //     inflater.inflate(R.menu.menu_action_bar, menu);
-   //     return true;
- //   }
 
-  //  @Override
-  //  public boolean onOptionsItemSelected(MenuItem item) {
-    //    switch(item.getItemId()){
-      //      case android.R.id.home:
-      //          NavUtils.navigateUpFromSameTask(this);
-      //          return true;
-
-      //      case R.id.menuButton:
-       //         NavigationView nav_view  = (NavigationView)findViewById(R.id.nav_view);
-       ///         startActivity( new Intent(HomePage.this, NavigationView nav_view));
-       //         Toast.makeText(HomePage.this, "asdfghjk ", Toast.LENGTH_SHORT).show();
-        //         return true;
-      //  }
- //       return bardrawer.onOptionsItemSelected(item);
-   //     }
       @Override
       public void onBackPressed() {
           Intent i = new Intent(getApplicationContext(), LoginPage.class);

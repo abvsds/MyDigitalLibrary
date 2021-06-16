@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -17,7 +16,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieEntry;
 
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
@@ -31,7 +29,7 @@ public class StatisticsPage extends AppCompatActivity {
 BarChart barchart, barchart1;
 SqliteDB db;
 ArrayList<BarEntry> barentries;
-    ArrayList<BarEntry> barentries1;
+ArrayList<BarEntry> barentries1;
 TextView messagee;
 
 
@@ -179,6 +177,12 @@ TextView messagee;
             if(barentries.size()==0 ){
 
                 messagee.setText("There are not statistics for you. You have no books added in the list. ");
+               yLeftAxis.setEnabled(false);
+               yLeftAxis1.setEnabled(false);
+               xAxis.setEnabled(false);
+               xAxis1.setEnabled(false);
+               description.setEnabled(false);
+               description1.setEnabled(false);
             }
 
 

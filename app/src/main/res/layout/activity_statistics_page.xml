@@ -14,20 +14,24 @@
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="30dp"
+      android:layout_marginTop="20dp"
+      android:fontFamily="casual"
+      android:textSize="18sp"
+      android:layout_centerHorizontal="true"
+      android:textColor="@color/black"
       android:layout_marginStart="10dp"
       android:id="@+id/message2"/>
   <com.github.mikephil.charting.charts.BarChart
         android:layout_width="330dp"
         android:layout_height="350dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/barChart"/>
   <com.github.mikephil.charting.charts.BarChart
       android:layout_width="330dp"
       android:layout_height="350dp"
       android:layout_centerHorizontal="true"
-      android:layout_marginTop="420dp"
+      android:layout_marginTop="390dp"
       android:id="@+id/barChart1"/>
 
 

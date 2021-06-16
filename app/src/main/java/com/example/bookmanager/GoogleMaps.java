@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,10 +37,9 @@ import com.google.android.gms.tasks.Task;
 
 
 
-public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
+public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback{
 
     public GoogleMap mMap;
-    // Context context;
     Button view_bookstores, view_libraries;
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -61,11 +59,7 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
 
         view_bookstores = findViewById(R.id.bookstores);
         view_libraries = findViewById(R.id.libraries);
-       // refresh_location = findViewById(R.id.refreshLocation);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        /*     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                 .findFragmentById(R.id.map);
-           mapFragment.getMapAsync(this);*/
+
 
       LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -77,19 +71,8 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
                 public void onClick(DialogInterface paramDialogInterface, int paramInt) {
                     startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 
-                        /*MarkerOptions markerOption = new MarkerOptions().position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude())).title("Your location");
+                    fetchLocation();
 
-                        Marker marker = mMap.addMarker(markerOption);
-                        marker.showInfoWindow();
-                        mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude())));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), 12));
-                        mMap.addMarker(markerOption);*/
-
-
-
-                        //  CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()).zoom(12).build();
-
-                        //   mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
                 }
             });
@@ -107,77 +90,7 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
             fetchLocation();
 
-        }
-
-
-        /*if(!checkGPS()){
-            AlertDialog.Builder alert = new AlertDialog.Builder(context);
-            alert.setTitle("Activate your GPS");
-            alert.setMessage("Your location seems to be not activated. Would you like to activate it?");
-            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                    context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                }
-            });
-            alert.setNegativeButton("No", new DialogInterface.OnClickListener(){
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    context.startActivity(new Intent(context, HomePage.class));
-                }
-            });
-            alert.show();
-        } else
-            fetchLocation();*/
-     /*   if(!checkInternet()){
-            AlertDialog.Builder alert = new AlertDialog.Builder(context);
-            alert.setTitle("Activate your network");
-            alert.setMessage("Your Internet Network seems to be not activated. Would you like to activate it?");
-            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                    context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                }
-            });
-            alert.setNegativeButton("No", new DialogInterface.OnClickListener(){
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    context.startActivity(new Intent(context, HomePage.class));
-                }
-            });
-            alert.create().show();
-        } else*/
-
-
- /*       refresh_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           *//*    Intent i = new Intent(GoogleMaps.this, GoogleMaps.class);
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(i);
-                overridePendingTransition(0, 0);*//*
-
-               *//* LocationRequest locationRequest = LocationRequest.create();
-                locationRequest.setInterval(10000);
-                locationRequest.setFastestInterval(5000);
-                locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*//*
-
-               // fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(currentLocation);
-                mMap.clear();
-                fetchLocation();
-                LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is your location!");
-                mMap.addMarker(markerOptions);
-                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
-
-
-
-            }
-        });*/
+       }
 
 
         view_bookstores.setOnClickListener(new View.OnClickListener() {
@@ -208,16 +121,6 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
     }
 
 
-  /*  private boolean checkGPS() {
-        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-    }
- private boolean checkInternet() {
-     LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-     return lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
- }*/
-
 
     private void fetchLocation() {
         if (ActivityCompat.checkSelfPermission(
@@ -225,13 +128,6 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
                 this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
-        }else {
-         /*   lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, (android.location.LocationListener) locationListener);
-            Location lastKnownLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            LatLng userLocation = new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
-            mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(userLocation).title(""));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,12));*/
         }
 
         Task<Location> task = fusedLocationProviderClient.getLastLocation();
@@ -252,8 +148,6 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is your location!");
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -275,40 +169,5 @@ public class GoogleMaps extends AppCompatActivity implements OnMapReadyCallback,
         }
     }
 
-
-    @Override
-    public void onLocationChanged(Location location) {
-      /*  fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        fetchLocation();
-        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is your location!");
-        mMap.addMarker(markerOptions);
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));*/
-
-
-    }
-
-    /*   @Override
-       protected void onResume() {
-           super.onResume();
-           if(mMap!=null){
-               mMap.clear();
-               LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-               MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is your location!");
-               mMap.addMarker(markerOptions);
-               mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-               mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
-           }
-       }*/
-    LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
-            mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(userLocation).title(""));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,12));
-        }
-    };
 
 }

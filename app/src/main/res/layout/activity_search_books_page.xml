@@ -20,8 +20,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:layout_marginStart="20dp"
-            android:textSize="25dp"
-            android:textColor="@color/white"
+            android:fontFamily="casual"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             tools:text="Failed to get Data. Please check your internet connection!"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -33,12 +34,7 @@
             android:layout_marginTop="8dp"
             tools:listitem="@layout/book_item_raw_api" />
 
-        <ProgressBar
-            android:id="@+id/loading_indicator"
-            android:visibility="invisible"
-            android:layout_width="50dp"
-            android:layout_centerInParent="true"
-            android:layout_height="50dp" />
+
     </RelativeLayout>
 
 

@@ -67,14 +67,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/descriptionbookapiIdd"
         android:layout_marginTop="100dp"
-        android:text="blalvlfllflsfdgdhj fxgfhgjhkj fddgfhgjh sdfghj fesrdfgh sdkiuytrew dfdgf"/>
-   <!--     <TextView
+        android:text="blal"/>
+    <TextView
            android:id="@+id/pageCountIdd"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginStart="260dp"
            android:text="200 pages"
-           android:textSize="14sp" />-->
+           android:textSize="14sp" />
 
     <Button
         android:layout_width="wrap_content"

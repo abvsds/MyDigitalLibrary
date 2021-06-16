@@ -4,13 +4,11 @@ package com.example.bookmanager;
 
 public class BookFromAPI {
     private final String gTitle;
-   private final String gAuthor;
-
+    private final String gAuthor;
     private final String gDescription;
     private final String gPreviewLink;
-   private final String gCategory;
-
-    private int pageCount;
+    private final String gCategory;
+    private final String pageCount;
     private final String gInfoLink;
     private final String gpublishDate;
     private final String gThumbnail;
@@ -32,7 +30,7 @@ public class BookFromAPI {
     public String getgInfoLink(){
         return gInfoLink;
     }
-    public int getPageCount(){
+    public String getPageCount(){
         return pageCount;
     }
     public String getgPreviewLink(){
@@ -41,19 +39,18 @@ public class BookFromAPI {
     public String getgCategory(){
         return gCategory;
     }
-public String getGpublishDate(){
+    public String getGpublishDate(){
         return gpublishDate;
 }
-public  String getgThumbnail(){
+    public  String getgThumbnail(){
         return gThumbnail;
 }
-
     public String getUsername() {
         return username;
     }
 
 
-public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,int pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink, String username){
+public BookFromAPI(String gTitle, String gAuthor,  String gpublishDate,String gDescription,String pageCount, String gCategory, String gThumbnail,String gPreviewLink, String gInfoLink, String username){
     this.gTitle=gTitle;
     this.gAuthor=gAuthor;
     this.gpublishDate=gpublishDate;

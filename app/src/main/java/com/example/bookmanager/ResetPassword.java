@@ -78,7 +78,7 @@ Button resetPass;
                            Toast.makeText(ResetPassword.this, "Password should have minimum 10 characters and should contain at least one uppercase letter, at least one lowercase letter, at least one digit and at least one special character !", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(ResetPassword.this, "Password is not matching! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ResetPassword.this, "Passwords are not matching! ", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

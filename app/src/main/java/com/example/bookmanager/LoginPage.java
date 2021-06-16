@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
   Button loginBtn;
-  TextView goTo_register;
   EditText username, password;
   SqliteDB DB;
   TextView resetPass, register;
@@ -87,17 +86,6 @@ public class LoginPage extends AppCompatActivity {
 
 
 
-goTo_register =  findViewById(R.id.gotoregisterID);
-goTo_register.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        openRegisterPage();
-    }
-});
-
-
-
-
         register= findViewById(R.id.gotoregisterID);
         SpannableString clicktoregister= new SpannableString("Not registered? Create an account here");
         ClickableSpan clickable1 = new ClickableSpan() {
@@ -118,10 +106,7 @@ goTo_register.setOnClickListener(new View.OnClickListener() {
         register.setText(clicktoregister);
         register.setMovementMethod(LinkMovementMethod.getInstance());
     }
-public void openRegisterPage(){
-        Intent intent= new Intent (this, RegisterPage.class);
-        startActivity(intent);
-}
+
 
 
 }
