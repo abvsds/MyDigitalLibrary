@@ -122,7 +122,6 @@ TextView messagee;
 
 
         barchart1.setData(barData1);
-
         barchart1.setBackgroundColor(Color.TRANSPARENT);
 
         Description description1 = barchart1.getDescription();
@@ -130,9 +129,6 @@ TextView messagee;
         description1.setPosition(890, 50);
         description1.setText("Number of days spent readind per month");
         description1.setTextSize(15f);
-
-
-
 
         XAxis xAxis1 = barchart1.getXAxis();
         xAxis1.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -168,12 +164,6 @@ TextView messagee;
         legend1.setEnabled(false);
         barchart1.animateXY(3000, 3000);
 
-
-
-
-
-
-
             if(barentries.size()==0 ){
 
                 messagee.setText("There are not statistics for you. You have no books added in the list. ");
@@ -184,8 +174,6 @@ TextView messagee;
                description.setEnabled(false);
                description1.setEnabled(false);
             }
-
-
     }
 
 
