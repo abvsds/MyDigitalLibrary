@@ -31,6 +31,16 @@
         android:textAllCaps="false"
         android:text="View nearby Libraries"/>
 
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/refreshLocation"
+        android:background="@drawable/ic_baseline_my_location_24"
+        android:layout_marginTop="540dp"
+        android:layout_marginStart="280dp"
+        android:textColor="@color/purple_200"
+        android:textAllCaps="false" />
+
 
 <fragment android:id="@+id/map"
 android:name="com.google.android.gms.maps.SupportMapFragment"
